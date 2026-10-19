@@ -1,0 +1,25 @@
+{
+  "name": "autistas-app",
+  "version": "0.0.1",
+  "description": "Guia cidadão e informativo sobre TEA e Direitos Eleitorais com gerador de requerimentos e acessibilidade",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -l 3000 .",
+    "dev": "npx serve -l 3000 ."
+  },
+  "keywords": [
+    "tea",
+    "autismo",
+    "direitos-eleitorais",
+    "acessibilidade",
+    "resolucao-tse",
+    "inclusao",
+    "cidadania"
+  ],
+  "author": "Raphael Kvasne <rkvasne@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rkvasne/autistas-app.git"
+  }
+}

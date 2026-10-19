@@ -1,0 +1,31 @@
+# Arquivos do Sistema Operacional
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Gerenciador de Pacotes e Dependências
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Deploy e Cache
+.vercel/
+.netlify/
+.cache/
+dist/
+build/
+*.env
+*.env.local
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporários
+*.tmp
+temp/
+scratch/
