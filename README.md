@@ -27,7 +27,6 @@ O projeto **Guia TEA & Voto** foi desenvolvido para desmistificar regras eleitor
 ```
 autistas-app/
 ├── index.html                   # Aplicação web principal de alta performance
-├── guia_tea_direitos_eleitorais_visual.html  # Redirecionamento e compatibilidade retroativa
 ├── assets/
 │   └── hero-illustration.png   # Ilustração de inclusão e cidadania (sem selos oficiais)
 ├── package.json                 # Metadados do projeto (v0.0.1) e scripts de execução
