@@ -449,6 +449,7 @@
       border-radius: var(--radius-md);
       overflow: hidden;
       box-shadow: var(--shadow-sm);
+      background: #ffffff;
     }
 
     .hero-art-img {
@@ -463,6 +464,83 @@
 
     .hero-art-box:hover .hero-art-img {
       transform: scale(1.015);
+    }
+
+    /* ===== Feature Media Showcase Cards ===== */
+    .feature-media-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 26px 30px;
+      margin: 24px 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .feature-media-card.reverse {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .feature-media-img-box {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      background: var(--bg);
+    }
+
+    .feature-media-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-media-card:hover .feature-media-img {
+      transform: scale(1.02);
+    }
+
+    .feature-media-content h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      margin: 6px 0 10px;
+    }
+
+    .feature-media-content p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .feature-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feature-checklist li {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--ink);
+      position: relative;
+      padding-left: 22px;
+    }
+
+    .feature-checklist li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #15803d;
+      font-weight: 800;
     }
 
     /* ===== Cards de Ação Rápida ===== */
@@ -1108,6 +1186,7 @@
       .nav,
       .crumb,
       .hero-card,
+      .feature-media-card,
       .quick-actions-grid,
       .section-block:not(#modelos),
       .banner-cta,
@@ -1151,6 +1230,12 @@
       .hero-art-box {
         max-width: 480px;
         margin: 0 auto;
+      }
+      .feature-media-card,
+      .feature-media-card.reverse {
+        grid-template-columns: 1fr;
+        padding: 22px 20px;
+        gap: 20px;
       }
       .quick-actions-grid,
       .cards-grid-4,
@@ -1300,7 +1385,7 @@
       </div>
 
       <div class="hero-art-box">
-        <img src="assets/hero-illustration.png" alt="Ilustração de pessoa autista com cordão de quebra-cabeça com a mensagem: Inclusão também se faz com informação" class="hero-art-img" />
+        <img src="assets/hero-illustration.png" alt="Ilustração de jovem autista com cordão de quebra-cabeça ao lado de cabine de votação com urna eletrônica e a mensagem: Inclusão também se faz com informação" class="hero-art-img" />
       </div>
     </section>
 
@@ -1385,6 +1470,24 @@
         </article>
       </div>
 
+      <!-- Feature Card 1: Acessibilidade Sensorial e Inclusão -->
+      <div class="feature-media-card">
+        <div class="feature-media-img-box">
+          <img src="assets/acessibilidade-inclusao.png" alt="Ilustração de eleitor autista com fones abafadores e acompanhante em entrada acessível de local de votação" class="feature-media-img" loading="lazy" />
+        </div>
+        <div class="feature-media-content">
+          <span class="section-eyebrow">Acessibilidade e Conforto</span>
+          <h3>Adaptações Sensoriais e Apoio no Dia da Eleição</h3>
+          <p>A legislação garante que pessoas no espectro autista possam exercer seu direito ao voto com dignidade, respeito ao seu ritmo e proteção contra sobrecarga sensorial:</p>
+          <ul class="feature-checklist">
+            <li><strong>Fones e abafadores de ruído:</strong> É permitido o uso de fones antirruído ou estimuladores sensoriais durante toda a permanência no local de votação.</li>
+            <li><strong>Atendimento prioritário legal:</strong> Direito a não aguardar em filas comuns, extensivo a um acompanhante (Lei 12.764/2012 e Lei 14.626/2023).</li>
+            <li><strong>Acompanhante de confiança na cabine:</strong> Se necessário para auxílio mecânico ou de apoio emocional, pessoa de confiança pode acompanhar o eleitor até a urna.</li>
+            <li><strong>Seções com acessibilidade física e menor fluxo:</strong> Possibilidade de solicitar ao cartório eleitoral a transferência para seções no térreo ou mais tranquilas.</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="callout-box info">
         <span aria-hidden="true" style="font-size: 20px;">ℹ️</span>
         <div>
@@ -1433,6 +1536,24 @@
           </div>
           <p>O Cartório processará o pedido e, quando envolver decisão judicial, o(a) Juiz(a) Eleitoral emitirá a decisão e certidão competente.</p>
         </article>
+      </div>
+
+      <!-- Feature Card 2: Apoio Familiar e Orientação Cidadã -->
+      <div class="feature-media-card reverse">
+        <div class="feature-media-content">
+          <span class="section-eyebrow">Apoio Cidadão e Familiar</span>
+          <h3>Procedimento Simples, Sem Barreiras Burocráticas</h3>
+          <p>Famílias e responsáveis desempenham um papel essencial no apoio à cidadania da pessoa com TEA. O sistema eleitoral brasileiro prevê procedimentos acessíveis:</p>
+          <ul class="feature-checklist">
+            <li><strong>Sem necessidade de curatela ou interdição:</strong> Pessoas autistas têm plena capacidade civil assegurada pela Lei Brasileira de Inclusão (LBI).</li>
+            <li><strong>Autodeclaração e relatórios simples:</strong> Para a análise do Art. 15 da Resolução TSE nº 23.659/2021, basta a autodeclaração ou documentação médica/multidisciplinar que demonstre as barreiras práticas.</li>
+            <li><strong>Isenção contínua ou quitação indeterminada:</strong> Evita a necessidade de renovar justificativas a cada dois anos ou a cada novo turno de eleição.</li>
+          </ul>
+          <a href="#orientacao" class="btn-primary" style="margin-top: 14px;">Utilizar o assistente de triagem <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="feature-media-img-box">
+          <img src="assets/orientacao-cidadania.png" alt="Ilustração de responsável e jovem autista organizando juntos a documentação eleitoral em ambiente acolhedor" class="feature-media-img" loading="lazy" />
+        </div>
       </div>
 
       <!-- Banner CTA -->
@@ -1860,7 +1981,7 @@
       const searchInput = $('site-search');
       searchInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase().trim();
-        const searchableElements = $$('.section-block, .action-card, .faq-item, .info-card');
+        const searchableElements = $$('.section-block, .action-card, .faq-item, .info-card, .feature-media-card');
 
         if (!term) {
           searchableElements.forEach(el => el.style.opacity = '1');
