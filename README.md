@@ -33,7 +33,9 @@ autistas-app/
 │   ├── hero-illustration-frontal.png   # Variação com visão frontal e cordão de identificação
 │   ├── hero-illustration-eleitora.png  # Variação: Jovem eleitora autista com cordão de identificação e urna
 │   ├── acessibilidade-inclusao.png     # Acessibilidade sensorial, fones abafadores e apoio
-│   └── orientacao-cidadania.png        # Orientação familiar e organização de documentos
+│   ├── orientacao-cidadania.png        # Orientação familiar e organização de documentos
+│   ├── atendimento-cartorio.png        # Atendimento humanizado no cartório e certidão de quitação
+│   └── protecao-beneficios.png         # Proteção e segurança de direitos civis, CPF e BPC
 ├── package.json                 # Metadados do projeto (v0.0.1) e scripts de execução
 ├── .gitignore                   # Filtro de arquivos do SO, IDEs e dependências
 ├── vercel.json                  # Configuração de segurança e deploy na Vercel
