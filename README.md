@@ -31,7 +31,7 @@ autistas-app/
 │   ├── hero-illustration.png           # Principal: Jovem com olhar esperançoso para o futuro e urna eletrônica
 │   ├── hero-illustration-pensativo.png # Variação original pensativa preservada
 │   ├── hero-illustration-frontal.png   # Variação com visão frontal e cordão de identificação
-│   ├── hero-illustration-blazer.png    # Variação jovem adulto em traje casual
+│   ├── hero-illustration-eleitora.png  # Variação: Jovem eleitora autista com cordão de identificação e urna
 │   ├── acessibilidade-inclusao.png     # Acessibilidade sensorial, fones abafadores e apoio
 │   └── orientacao-cidadania.png        # Orientação familiar e organização de documentos
 ├── package.json                 # Metadados do projeto (v0.0.1) e scripts de execução
