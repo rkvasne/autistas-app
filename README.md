@@ -28,19 +28,23 @@ O projeto **Guia TEA & Voto** foi desenvolvido para desmistificar regras eleitor
 autistas-app/
 ├── index.html                   # Aplicação web principal de alta performance
 ├── assets/
-│   ├── hero-illustration.png           # Principal: Jovem com olhar esperançoso para o futuro e cabine com urna eletrônica
-│   ├── hero-illustration-pensativo.png # Variação original pensativa preservada
-│   ├── hero-illustration-frontal.png   # Variação com visão frontal e cordão de identificação
-│   ├── hero-illustration-eleitora.png  # Variação: Jovem eleitora autista com cordão de identificação e urna
-│   ├── acessibilidade-inclusao.png     # Escola pública brasileira no dia da votação com rampa, piso tátil e acolhimento
-│   ├── acessibilidade-inclusao-disney.png # Variação estilo cartoon preservada
-│   ├── acessibilidade-inclusao-clinica.png # Variação fachada clínica preservada
-│   ├── orientacao-cidadania.png        # Orientação familiar e organização de documentos
-│   ├── atendimento-cartorio.png        # Cartório Eleitoral brasileiro típico (longarinas, totem de senhas, guichê e atendimento humanizado)
+│   ├── hero-illustration.png           # Principal (Hero): Jovem autista com olhar esperançoso e cabine de votação (estilo 3D mestre)
+│   ├── acessibilidade-inclusao.png     # Seção 1: Escola pública no dia da votação, rampa acessível, piso tátil e acolhimento (3D unificado)
+│   ├── orientacao-cidadania.png        # Seção 2: Jovem e mãe organizando requisitos eleitorais na escrivaninha (3D unificado)
+│   ├── atendimento-cartorio.png        # Seção 3: Atendimento humanizado no Cartório Eleitoral com longarinas, totem e guichê (3D unificado)
+│   ├── protecao-beneficios.png         # Seção 4: Família acolhida em casa, café, RG na mesa e confirmação de benefícios (3D unificado)
+│   ├── hero-illustration-pensativo.png # Variação hero pensativa preservada
+│   ├── hero-illustration-frontal.png   # Variação hero frontal preservada
+│   ├── hero-illustration-eleitora.png  # Variação hero jovem eleitora preservada
+│   ├── atendimento-cartorio-2d-triste.png # Variação 2D cartório preservada
 │   ├── atendimento-cartorio-consultorio.png # Variação estilo consultório preservada
-│   ├── protecao-beneficios.png         # Lar brasileiro acolhedor com RG, certidão e confirmação da segurança de benefícios (BPC/LOAS)
-│   ├── protecao-beneficios-telas.png   # Variação com telas múltiplas preservada
-│   └── protecao-beneficios-antivirus.png # Variação com escudo antivírus preservada
+│   ├── acessibilidade-inclusao-comic.png # Variação 2D escola preservada
+│   ├── acessibilidade-inclusao-disney.png # Variação cartoon preservada
+│   ├── acessibilidade-inclusao-clinica.png # Variação clínica preservada
+│   ├── orientacao-cidadania-v1.png     # Variação inicial orientação preservada
+│   ├── protecao-beneficios-pintura.png # Variação pintura família preservada
+│   ├── protecao-beneficios-telas.png   # Variação telas múltiplas preservada
+│   └── protecao-beneficios-antivirus.png # Variação escudo antivírus preservada
 ├── package.json                 # Metadados do projeto (v0.0.1) e scripts de execução
 ├── .gitignore                   # Filtro de arquivos do SO, IDEs e dependências
 ├── vercel.json                  # Configuração de segurança e deploy na Vercel
