@@ -33,22 +33,7 @@ autistas-app/
 │   ├── orientacao-cidadania.png        # Seção 2: Organização familiar de documentos e requisitos (2D editorial oficial)
 │   ├── atendimento-cartorio.png        # Seção 3: Atendimento acolhedor no Cartório Eleitoral com expressão serena (2D editorial)
 │   ├── protecao-beneficios.png         # Seção 4: Família acolhida em casa, café, 1 RG e celular confirmando benefícios (2D editorial)
-│   ├── hero-illustration-frontal.png   # Variação hero frontal preservada
-│   ├── hero-illustration-pensativo.png # Variação hero pensativa preservada
-│   ├── hero-illustration-eleitora.png  # Variação hero jovem eleitora preservada
-│   ├── atendimento-cartorio-2d-triste.png # Variação 2D cartório anterior preservada
-│   ├── atendimento-cartorio-consultorio.png # Variação estilo consultório preservada
-│   ├── atendimento-cartorio-3d.png     # Variação 3D preservada
-│   ├── acessibilidade-inclusao-comic.png # Variação comic preservada
-│   ├── acessibilidade-inclusao-disney.png # Variação cartoon preservada
-│   ├── acessibilidade-inclusao-clinica.png # Variação clínica preservada
-│   ├── acessibilidade-inclusao-3d.png  # Variação 3D preservada
-│   ├── orientacao-cidadania-v1.png     # Variação 2D original preservada
-│   ├── orientacao-cidadania-3d.png     # Variação 3D preservada
-│   ├── protecao-beneficios-antivirus.png # Variação escudo antivírus preservada
-│   ├── protecao-beneficios-pintura.png # Variação pintura família preservada
-│   ├── protecao-beneficios-telas.png   # Variação telas múltiplas preservada
-│   └── protecao-beneficios-3d.png      # Variação 3D preservada
+│   └── arquivo/                        # Acervo histórico com todas as 16 variações e versões de estudo preservadas
 ├── package.json                 # Metadados do projeto (v0.0.1) e scripts de execução
 ├── .gitignore                   # Filtro de arquivos do SO, IDEs e dependências
 ├── vercel.json                  # Configuração de segurança e deploy na Vercel
