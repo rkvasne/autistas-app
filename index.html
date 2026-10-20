@@ -1689,7 +1689,7 @@
       <!-- Feature Card: Atendimento no Cartório e Certidão pelo Artigo 15 -->
       <div class="feature-media-card">
         <div class="feature-media-img-box">
-          <img src="assets/atendimento-cartorio.png" alt="Ilustração de atendimento humanizado em cartório eleitoral brasileiro, com servidora pública atendendo jovem autista e sua mãe em balcão com computadores, pastas AZ, painel de senhas e cadeiras longarinas azuis" class="feature-media-img" loading="lazy" />
+          <img src="assets/atendimento-cartorio.png" alt="Ilustração em arte vetorial 2D de atendimento acolhedor no Cartório Eleitoral brasileiro, com servidora pública atenciosa em blazer azul orientando jovem eleitor autista com cordão de identificação e sua mãe, em balcão acessível com totem de senhas e painel de informações" class="feature-media-img" loading="lazy" />
         </div>
         <div class="feature-media-content">
           <span class="section-eyebrow">Acolhimento no Cartório Eleitoral</span>
@@ -1762,7 +1762,7 @@
           </ul>
         </div>
         <div class="feature-media-img-box">
-          <img src="assets/protecao-beneficios.png" alt="Ilustração em arte vetorial 2D de jovem adulto autista e sua mãe reunidos em casa à mesa com café, carteira de identidade RG e celular confirmando a tranquilidade e segurança de benefícios sociais como BPC/LOAS e quitação eleitoral" class="feature-media-img" loading="lazy" />
+          <img src="assets/protecao-beneficios.png" alt="Ilustração em arte vetorial 2D de mãe e jovem adulto autista reunidos em casa à mesa com café, carteira de identidade RG e smartphone confirmando a tranquilidade e segurança de benefícios sociais como BPC/LOAS e quitação eleitoral" class="feature-media-img" loading="lazy" />
         </div>
       </div>
     </section>
@@ -1842,6 +1842,9 @@
       <div class="doc-actions no-print">
         <button type="button" class="btn-primary" id="btn-print">
           <span aria-hidden="true">🖨️</span> Imprimir / Salvar em PDF
+        </button>
+        <button type="button" class="btn-secondary" id="btn-download-txt">
+          <span aria-hidden="true">💾</span> Baixar Arquivo (.txt)
         </button>
         <button type="button" class="btn-secondary" id="btn-copy">
           <span aria-hidden="true">📋</span> Copiar texto
@@ -1952,7 +1955,7 @@
   <footer class="footer no-print" role="contentinfo">
     <div class="wrap footer-inner">
       <div>
-        <strong>Guia TEA & Voto</strong> · Versão 0.0.1
+        <strong>Guia TEA & Voto</strong> · Versão 0.1.0
         <br />
         <small>Iniciativa cidadã e independente de apoio à inclusão. Este portal não possui vínculo oficial com o Tribunal Superior Eleitoral (TSE) ou Tribunais Regionais Eleitorais (TREs).</small>
       </div>
@@ -2227,17 +2230,93 @@ Assinatura do(a) requerente ou representante legal`;
         $('doc-output').textContent = textoFinal;
       }
 
+      // Máscara formatadora para Título de Eleitor (0000 0000 0000)
+      const inputTitulo = $('form-titulo');
+      if (inputTitulo) {
+        inputTitulo.addEventListener('input', (e) => {
+          let val = e.target.value.replace(/\D/g, '').slice(0, 12);
+          let formatted = '';
+          for (let i = 0; i < val.length; i++) {
+            if (i > 0 && i % 4 === 0) formatted += ' ';
+            formatted += val[i];
+          }
+          e.target.value = formatted;
+        });
+      }
+
+      // Persistência em tempo real no localStorage (Salvamento de Rascunho)
+      function saveFormDraft() {
+        const draft = {};
+        formFields.forEach(id => {
+          const el = $(id);
+          if (el) draft[id] = el.value;
+        });
+        localStorage.setItem('tea_form_draft', JSON.stringify(draft));
+      }
+
+      function loadFormDraft() {
+        try {
+          const raw = localStorage.getItem('tea_form_draft');
+          if (raw) {
+            const draft = JSON.parse(raw);
+            let hasContent = false;
+            formFields.forEach(id => {
+              const el = $(id);
+              if (el && draft[id] !== undefined && draft[id] !== '') {
+                el.value = draft[id];
+                if (id !== 'form-tipo' && id !== 'form-data') hasContent = true;
+              }
+            });
+            if (hasContent) {
+              const feedback = $('copy-feedback');
+              if (feedback) {
+                feedback.textContent = 'ℹ️ Rascunho anterior recuperado automaticamente.';
+                setTimeout(() => { if (feedback.textContent && feedback.textContent.includes('recuperado')) feedback.textContent = ''; }, 3500);
+              }
+            }
+          }
+        } catch (e) {
+          console.error('Erro ao recuperar rascunho:', e);
+        }
+      }
+
       formFields.forEach(fieldId => {
         const el = $(fieldId);
         if (el) {
-          el.addEventListener('input', updateDocumentPreview);
-          el.addEventListener('change', updateDocumentPreview);
+          el.addEventListener('input', () => {
+            updateDocumentPreview();
+            saveFormDraft();
+          });
+          el.addEventListener('change', () => {
+            updateDocumentPreview();
+            saveFormDraft();
+          });
         }
       });
 
       // Ações do Gerador
       $('btn-print').addEventListener('click', () => {
         window.print();
+      });
+
+      $('btn-download-txt').addEventListener('click', () => {
+        const text = $('doc-output').textContent;
+        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const tipo = $('form-tipo').value || 'requerimento';
+        const rawNome = $('form-nome').value.trim() || 'eleitor';
+        const nomeLimpo = rawNome.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
+        a.download = `requerimento-eleitoral-${tipo}-${nomeLimpo}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        const feedback = $('copy-feedback');
+        feedback.textContent = '✓ Arquivo .txt baixado com sucesso!';
+        setTimeout(() => feedback.textContent = '', 4000);
       });
 
       $('btn-copy').addEventListener('click', async () => {
@@ -2261,11 +2340,16 @@ Assinatura do(a) requerente ou representante legal`;
             }
           });
           $('form-data').value = today;
+          localStorage.removeItem('tea_form_draft');
           updateDocumentPreview();
+          const feedback = $('copy-feedback');
+          feedback.textContent = 'Campos limpos com sucesso.';
+          setTimeout(() => feedback.textContent = '', 3000);
         }
       });
 
-      // Inicialização da prévia
+      // Inicialização: carregar rascunho salvo e atualizar prévia
+      loadFormDraft();
       updateDocumentPreview();
 
       /* ============================================================

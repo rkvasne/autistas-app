@@ -1,4 +1,4 @@
-# Guia TEA & Voto — Direitos Eleitorais e Acessibilidade (v0.0.1)
+# Guia TEA & Voto — Direitos Eleitorais e Acessibilidade (v0.1.0)
 
 > **Iniciativa Cidadã e Independente:** Este portal é um guia informativo da sociedade civil destinado a pessoas autistas, suas famílias e representantes legais. **Não é uma página governamental oficial** do Tribunal Superior Eleitoral (TSE) ou dos Tribunais Regionais Eleitorais (TREs). Para serviços e certidões oficiais, consulte sempre o portal do TSE ([tse.jus.br](https://www.tse.jus.br)).
 
@@ -11,14 +11,17 @@ O projeto **Guia TEA & Voto** foi desenvolvido para desmistificar regras eleitor
 ### Principais Funcionalidades:
 1. **Assistente de Triagem Orientada (Wizard):** Diagnóstico rápido em 3 etapas que orienta o cidadão de acordo com sua situação concreta (desejo de votar com acessibilidade, dificuldade excessiva para comparecer, registro de deficiência ou pendências cadastrais).
 2. **Gerador Dinâmico de Requerimentos Jurídicos:** Editor em tempo real com pré-visualização instantânea para elaboração de petições fundamentadas no **Art. 15 da Resolução TSE nº 23.659/2021** (isenção de sanções ou certidão por prazo indeterminado), acessibilidade ou regularização.
-3. **Formatação para Impressão (PDF/A4):** Estilos dedicados (`@media print`) que eliminam menus e elementos interativos, gerando um documento limpo e pronto para entrega ao Cartório Eleitoral.
+   - **Salvamento Automático de Rascunho (`localStorage`):** Os dados digitados são preservados mesmo se a página for fechada ou recarregada.
+   - **Máscara Automática de Título de Eleitor:** Formatação inteligente em blocos (`0000 0000 0000`).
+3. **Download Direto (.txt) e Impressão (PDF/A4):** Opção de baixar o requerimento preenchido em arquivo de texto plano formatado e estilos dedicados (`@media print`) para impressão direta e limpa.
 4. **Cópia Instantânea:** Botão para cópia do texto com feedback visual (`toast`).
 5. **Recursos de Acessibilidade (WCAG 2.1 AA/AAA):**
    - Alternador de Alto Contraste para baixa visão ou sensibilidade à luz.
    - Ajuste dinâmico de tamanho de tipografia (`A+`, `A`, `A-`).
    - Busca em tempo real com realce de tópicos e perguntas frequentes.
    - Navegação por teclado completa (`:focus-visible`).
-6. **Esclarecimento sobre Benefícios e Documentos:** Orientações sobre a independência do CPF (Receita Federal) e do BPC/LOAS (INSS/MDS) em relação a faltas eleitorais.
+6. **Representatividade e Diversidade Étnica:** Direção de arte editorial 2D que reflete o mosaico plural da população brasileira (pessoas pardas, negras, brancas e com diferentes traços regionais).
+7. **Esclarecimento sobre Benefícios e Documentos:** Orientações sobre a independência do CPF (Receita Federal) e do BPC/LOAS (INSS/MDS) em relação a faltas eleitorais.
 
 ---
 
@@ -30,11 +33,13 @@ autistas-app/
 ├── assets/
 │   ├── hero-illustration.png           # Principal (Hero): Jovem autista com olhar de esperança e cabine com urna eletrônica
 │   ├── acessibilidade-inclusao.png     # Seção 1: Jovem mulher autista com fones abafadores e pai em escola acessível (2D editorial)
-│   ├── orientacao-cidadania.png        # Seção 2: Apoio familiar e organização de documentos e triagem (2D editorial oficial)
-│   ├── atendimento-cartorio.png        # Seção 3: Atendimento acolhedor de mãe e jovem no Cartório Eleitoral (2D editorial)
-│   ├── protecao-beneficios.png         # Seção 4: Jovem adulto autista e mãe em casa confirmando direitos e BPC (2D editorial)
-│   └── arquivo/                        # Acervo histórico com todas as 18 variações e versões de estudo preservadas
-├── package.json                 # Metadados do projeto (v0.0.1) e scripts de execução
+│   ├── orientacao-cidadania.png        # Seção 2: Apoio familiar e organização de documentos e triagem (2D editorial)
+│   ├── atendimento-cartorio.png        # Seção 3: Atendimento acolhedor de servidora pública e família no Cartório Eleitoral (2D editorial)
+│   ├── protecao-beneficios.png         # Seção 4: Mãe e jovem adulto autista confirmando segurança de benefícios e BPC (2D editorial)
+│   └── arquivo/                        # Acervo histórico com todas as 20 variações e versões de estudo preservadas
+├── CHANGELOG.md                 # Registro cronológico detalhado de lançamentos e versões
+├── LICENSE                      # Licença de código aberto MIT
+├── package.json                 # Metadados do projeto (v0.1.0) e scripts de execução
 ├── .gitignore                   # Filtro de arquivos do SO, IDEs e dependências
 ├── vercel.json                  # Configuração de segurança e deploy na Vercel
 ├── netlify.toml                 # Configuração de deploy no Netlify

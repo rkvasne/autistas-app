@@ -1,6 +1,6 @@
 {
   "name": "autistas-app",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Guia cidadão e informativo sobre TEA e Direitos Eleitorais com gerador de requerimentos e acessibilidade",
   "main": "index.html",
   "scripts": {
