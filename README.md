@@ -29,11 +29,11 @@ autistas-app/
 ├── index.html                   # Aplicação web principal de alta performance
 ├── assets/
 │   ├── hero-illustration.png           # Principal (Hero): Jovem autista com olhar de esperança e cabine com urna eletrônica
-│   ├── acessibilidade-inclusao.png     # Seção 1: Escola pública no dia da votação com rampa, piso tátil e acolhimento (2D editorial)
-│   ├── orientacao-cidadania.png        # Seção 2: Organização familiar de documentos e requisitos (2D editorial oficial)
-│   ├── atendimento-cartorio.png        # Seção 3: Atendimento acolhedor no Cartório Eleitoral com expressão serena (2D editorial)
-│   ├── protecao-beneficios.png         # Seção 4: Família acolhida em casa, café, 1 RG e celular confirmando benefícios (2D editorial)
-│   └── arquivo/                        # Acervo histórico com todas as 16 variações e versões de estudo preservadas
+│   ├── acessibilidade-inclusao.png     # Seção 1: Jovem mulher autista com fones abafadores e pai em escola acessível (2D editorial)
+│   ├── orientacao-cidadania.png        # Seção 2: Apoio familiar e organização de documentos e triagem (2D editorial oficial)
+│   ├── atendimento-cartorio.png        # Seção 3: Atendimento acolhedor de mãe e jovem no Cartório Eleitoral (2D editorial)
+│   ├── protecao-beneficios.png         # Seção 4: Jovem adulto autista e mãe em casa confirmando direitos e BPC (2D editorial)
+│   └── arquivo/                        # Acervo histórico com todas as 18 variações e versões de estudo preservadas
 ├── package.json                 # Metadados do projeto (v0.0.1) e scripts de execução
 ├── .gitignore                   # Filtro de arquivos do SO, IDEs e dependências
 ├── vercel.json                  # Configuração de segurança e deploy na Vercel
