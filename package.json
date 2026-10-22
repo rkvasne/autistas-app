@@ -1,6 +1,6 @@
 {
   "name": "autistas-app",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Autismo & Direitos — Portal prático de cidadania, inclusão e direitos com gerador de requerimentos e atendimento virtual humanizado",
   "main": "index.html",
   "scripts": {

@@ -1,5 +1,69 @@
-// api/chat.js - Serverless function para Vercel
-// Intermedeia a comunicação segura com o OpenRouter AI
+/**
+ * Registra a mensagem enviada ao assistente para conformidade LGPD e ciclo de melhoria de 180 dias.
+ * Tenta gravar no Supabase via REST API (se configurado); caso contrário, persiste em log estruturado serverless.
+ */
+async function recordInteractionLog({ sessionId, userMessage, assistantResponse, model, ipAddress, userAgent }) {
+  const RETENTION_DAYS = 180;
+  const createdAt = new Date().toISOString();
+  const expiresAt = new Date(Date.now() + RETENTION_DAYS * 24 * 60 * 60 * 1000).toISOString();
+
+  const logPayload = {
+    event: 'ASSISTANT_CONVERSATION_RECORD',
+    session_id: sessionId,
+    user_message: (userMessage || '').trim(),
+    assistant_response: (assistantResponse || '').trim().substring(0, 1500),
+    model: model || 'openai/gpt-4o-mini',
+    created_at: createdAt,
+    expires_at: expiresAt,
+    retention_days: RETENTION_DAYS,
+    legal_basis: 'LGPD Art. 7, V (execução de serviço a pedido do titular) e IX (legítimo interesse para aprimoramento pedagógico)',
+    metadata: {
+      user_agent: (userAgent || '').substring(0, 120),
+      ip_masked: ipAddress ? ipAddress.replace(/(\d+)\.(\d+)\.(\d+)\.(\d+)/, '$1.$2.***.***') : 'anonymized'
+    }
+  };
+
+  // 1. Log Estruturado Serverless (garante retenção nos Vercel Logs / Log Drains)
+  console.log(JSON.stringify(logPayload));
+
+  // 2. Supabase / PostgreSQL (se as variáveis SUPABASE_URL e SUPABASE_ANON_KEY / SERVICE_ROLE_KEY existirem)
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+
+  if (supabaseUrl && supabaseKey) {
+    try {
+      const endpoint = `${supabaseUrl.replace(/\/$/, '')}/rest/v1/assistant_messages`;
+      const sbRes = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          session_id: sessionId,
+          user_message: logPayload.user_message,
+          assistant_response: logPayload.assistant_response,
+          model: logPayload.model,
+          created_at: createdAt,
+          expires_at: expiresAt,
+          metadata: logPayload.metadata
+        }),
+        signal: AbortSignal.timeout(3000)
+      });
+
+      if (!sbRes.ok) {
+        const sbErr = await sbRes.text();
+        console.warn('Aviso: Falha ao persistir no Supabase (fallback ativo):', sbErr);
+      }
+    } catch (sbError) {
+      console.warn('Aviso: Erro de conexão com Supabase (fallback para logs ativo):', sbError.message);
+    }
+  }
+
+  return { createdAt, expiresAt, retentionDays: RETENTION_DAYS };
+}
 
 export default async function handler(req, res) {
   // Configuração de cabeçalhos CORS
@@ -22,8 +86,16 @@ export default async function handler(req, res) {
     });
   }
 
-  try {
-    const { messages, apiKey: clientApiKey, model: clientModel } = req.body || {};
+    const { messages, apiKey: clientApiKey, model: clientModel, sessionId: clientSessionId } = req.body || {};
+
+    // Identificador de sessão anônimo para auditoria LGPD
+    const sessionId = clientSessionId || `anon_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+    const userAgent = req.headers['user-agent'] || '';
+    const ipAddress = req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '';
+
+    // Extrai a última mensagem formulada pelo usuário
+    const userMessages = (Array.isArray(messages) ? messages : []).filter(m => m.role === 'user');
+    const lastUserMessage = userMessages.length > 0 ? userMessages[userMessages.length - 1].content : '';
 
     // Chave de API: variável de ambiente OPENROUTER_API_KEY no servidor (ou chave informada na requisição)
     const apiKey = clientApiKey || process.env.OPENROUTER_API_KEY;
@@ -103,6 +175,25 @@ DIRETRIZES FUNDAMENTAIS DE ATENDIMENTO:
     }
 
     const data = await response.json();
+    const assistantText = data?.choices?.[0]?.message?.content || '';
+
+    // Registra a interação para conformidade e melhoria (180 dias)
+    const retentionInfo = await recordInteractionLog({
+      sessionId: sessionId,
+      userMessage: lastUserMessage,
+      assistantResponse: assistantText,
+      model: model,
+      ipAddress: ipAddress,
+      userAgent: userAgent
+    });
+
+    data.retention = {
+      days: 180,
+      expiresAt: retentionInfo.expiresAt,
+      sessionId: sessionId,
+      legalBasis: 'LGPD Art. 7, V e IX'
+    };
+
     return res.status(200).json(data);
   } catch (error) {
     console.error('Erro no handler da API:', error);

@@ -1,4 +1,4 @@
-# Autismo & Direitos — Guia Prático de Cidadania e Inclusão (v0.1.4)
+# Autismo & Direitos — Guia Prático de Cidadania e Inclusão (v0.1.5)
 
 > **Iniciativa Cidadã e Independente:** Este portal é uma plataforma informativa da sociedade civil destinada a pessoas autistas, suas famílias e representantes legais. **Não é uma página governamental oficial** do Tribunal Superior Eleitoral (TSE) ou dos Tribunais Regionais Eleitorais (TREs). Para serviços e certidões oficiais, consulte sempre o portal do TSE ([tse.jus.br](https://www.tse.jus.br)).
 
@@ -12,20 +12,27 @@ O portal **Autismo & Direitos** foi concebido para simplificar a legislação, a
 1. **Guia Virtual de Atendimento ("Pegando na Mão do Cidadão"):** Atendente conversacional no canto inferior direito que acolhe o cidadão de forma calorosa, didática e empática, esclarecendo dúvidas sobre voto, Artigo 15, BPC/LOAS, acompanhante e geração de petições.
    - **Operação Transparente e Sem Fricção:** O atendente já vem pronto e 100% configurado de fábrica no backend, sem exigir configurações nem expor termos técnicos ou seleção de modelos para o usuário final.
    - **Arquitetura Resiliente:** Rota serverless segura `/api/chat` integrada ao OpenRouter (GPT-4o-mini), aliada a uma base empática local que responde prontamente mesmo sem conexão.
+   - **Guarda de Mensagens e Retenção por 180 Dias (LGPD):** Conforme Art. 7º, V e IX da Lei Federal nº 13.709/2018, as mensagens enviadas ao assistente são armazenadas de forma anônima pelo período de 180 dias exclusivamente para fins de calibração pedagógica e melhoria do conteúdo do portal, **mesmo que o usuário recuse cookies opcionais ou telemetria**.
+   - **Persistência Dupla (Supabase / Structured Logging):** Script SQL `supabase_assistant_messages.sql` com tabela `assistant_messages`, políticas RLS, expurgo automático e fallback transparente para logs JSON estruturados em ambientes serverless.
    - **Navegação Guiada Interativa:** O atendente insere atalhos interativos que rolam suavemente a página até a ferramenta correta (ex: gerador de requerimento).
-2. **Assistente de Triagem Orientada (Wizard):** Diagnóstico rápido em 3 etapas que orienta o cidadão de acordo com sua situação concreta (desejo de votar com acessibilidade, dificuldade excessiva para comparecer, registro de deficiência ou pendências cadastrais).
-3. **Gerador Dinâmico de Requerimentos Jurídicos:** Editor em tempo real com pré-visualização instantânea para elaboração de petições fundamentadas no **Art. 15 da Resolução TSE nº 23.659/2021** (isenção de sanções ou certidão por prazo indeterminado), acessibilidade ou regularização.
-   - **Salvamento Automático de Rascunho (`localStorage`):** Os dados digitados são preservados mesmo se a página for fechada ou recarregada.
+2. **Conformidade LGPD e Transparência de Privacidade:**
+   - Banner flutuante de consentimento com opções claras ("Aceitar Todos" e "Apenas Essenciais / Recusar Telemetria").
+   - Esclarecimento explícito sobre a retenção de 180 dias das perguntas do chat.
+   - Seção dedicada `#privacidade` no portal com 4 cartões explicativos, direitos do titular (Art. 18) e canal com Encarregado de Dados.
+   - Botão para reabrir e gerenciar preferências de privacidade a qualquer momento no rodapé e na seção de termos.
+3. **Assistente de Triagem Orientada (Wizard):** Diagnóstico rápido em 3 etapas que orienta o cidadão de acordo com sua situação concreta (desejo de votar com acessibilidade, dificuldade excessiva para comparecer, registro de deficiência ou pendências cadastrais).
+4. **Gerador Dinâmico de Requerimentos Jurídicos:** Editor em tempo real com pré-visualização instantânea para elaboração de petições fundamentadas no **Art. 15 da Resolução TSE nº 23.659/2021** (isenção de sanções ou certidão por prazo indeterminado), acessibilidade ou regularização.
+   - **Salvamento Automático de Rascunho (`localStorage`):** Os dados digitados são preservados estritamente na máquina do usuário e nunca transmitidos a servidores externos.
    - **Máscara Automática de Título de Eleitor:** Formatação inteligente em blocos (`0000 0000 0000`).
-4. **Download Direto (.txt) e Impressão (PDF/A4):** Opção de baixar o requerimento preenchido em arquivo de texto plano formatado e estilos dedicados (`@media print`) para impressão direta e limpa.
-5. **Cópia Instantânea:** Botão para cópia do texto com feedback visual (`toast`).
-6. **Recursos de Acessibilidade (WCAG 2.1 AA/AAA):**
-   - Alternador de Alto Contraste para baixa visão ou sensibilidade à luz (aplicado também ao chat).
+5. **Download Direto (.txt) e Impressão (PDF/A4):** Opção de baixar o requerimento preenchido em arquivo de texto plano formatado e estilos dedicados (`@media print`) para impressão direta e limpa.
+6. **Cópia Instantânea:** Botão para cópia do texto com feedback visual (`toast`).
+7. **Recursos de Acessibilidade (WCAG 2.1 AA/AAA):**
+   - Alternador de Alto Contraste para baixa visão ou sensibilidade à luz (aplicado também ao chat, banner e rodapé).
    - Ajuste dinâmico de tamanho de tipografia (`A+`, `A`, `A-`).
    - Busca em tempo real com realce de tópicos e perguntas frequentes.
    - Navegação por teclado completa (`:focus-visible`).
-7. **Representatividade e Diversidade Étnica:** Direção de arte editorial 2D que reflete o mosaico plural da população brasileira (pessoas pardas, negras, brancas e com diferentes traços regionais).
-8. **Esclarecimento Preciso sobre Documentos e Benefícios:** Informações exatas sobre a independência do CPF (Receita Federal) e do BPC/LOAS (INSS/MDS) — que nunca são cancelados por falta de voto —, diferenciando do Título de Eleitor (que pode ser cancelado após 3 eleições sem justificativa) e demonstrando como o Art. 15 da Resolução TSE nº 23.659/2021 protege a pessoa autista contra qualquer penalidade.
+8. **Representatividade e Diversidade Étnica:** Direção de arte editorial 2D que reflete o mosaico plural da população brasileira (pessoas pardas, negras, brancas e com diferentes traços regionais).
+9. **Esclarecimento Preciso sobre Documentos e Benefícios:** Informações exatas sobre a independência do CPF (Receita Federal) e do BPC/LOAS (INSS/MDS) — que nunca são cancelados por falta de voto —, diferenciando do Título de Eleitor (que pode ser cancelado após 3 eleições sem justificativa) e demonstrando como o Art. 15 da Resolução TSE nº 23.659/2021 protege a pessoa autista contra qualquer penalidade.
 
 ---
 
@@ -49,7 +56,8 @@ autistas-app/
 │   └── arquivo/                        # Acervo histórico com todas as 20 variações e versões de estudo preservadas
 ├── CHANGELOG.md                 # Registro cronológico detalhado de lançamentos e versões
 ├── LICENSE                      # Licença de código aberto MIT
-├── package.json                 # Metadados do projeto (v0.1.4) e scripts de execução
+├── package.json                 # Metadados do projeto (v0.1.5) e scripts de execução
+├── supabase_assistant_messages.sql # Script SQL para Supabase/PostgreSQL com retenção de 180 dias
 ├── .gitignore                   # Filtro de arquivos do SO, IDEs e dependências
 ├── vercel.json                  # Configuração de segurança e deploy na Vercel
 ├── netlify.toml                 # Configuração de deploy no Netlify

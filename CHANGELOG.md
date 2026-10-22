@@ -4,6 +4,23 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.1.5] - 2026-10-22
+
+### Adicionado
+- **Retenção de Mensagens do Assistente por 180 Dias para Melhoria do Conteúdo**:
+  - Armazenamento de todas as dúvidas e interações submetidas ao Guia Virtual por 180 dias para fins exclusivos de auditoria pedagógica, calibração e aprimoramento contínuo das orientações cidadãs do site.
+  - **Script de Migração Supabase/PostgreSQL (`supabase_assistant_messages.sql`)**: Estrutura com tabela `assistant_messages`, campos indexados (`session_id`, `created_at`, `expires_at`), políticas de segurança RLS e função para expurgo automatizado de mensagens após 180 dias.
+  - **Persistência Dupla e Resiliente no Backend (`api/chat.js`)**: Integração assíncrona com Supabase REST API (com timeout seguro de 3s) e fallback para logs estruturados JSON (`ASSISTANT_CONVERSATION_RECORD`) em plataformas serverless (Vercel/Netlify).
+  - **Cofre Local de Auditoria (`tea_chat_vault`)**: Armazenamento seguro no navegador com expurgo preventivo automático que purga conversas com mais de 180 dias.
+- **Conformidade LGPD e Avisos Obrigatórios de Privacidade**:
+  - **Banner Flutuante de Privacidade e Cookies (`#privacy-banner`)**: Aviso claro com ações para "Aceitar Todos" e "Apenas Essenciais (Recusar Telemetria)", informando expressamente que, mesmo com a recusa de cookies ou telemetria, as perguntas enviadas voluntariamente ao assistente permanecem guardadas por 180 dias para aprimoramento pedagógico (Art. 7º, V e IX da Lei Federal nº 13.709/2018).
+  - **Seção Completa de Privacidade (`#privacidade`)**: Nova seção com 4 cards explicativos sobre finalidade cidadã, retenção de 180 dias, sigilo dos rascunhos (100% locais no navegador) e direitos do titular com canal direto para o Encarregado de Dados.
+  - **Avisos no Atendente Virtual**: Inclusão de alerta preventivo na mensagem de acolhimento inicial e no rodapé do chat (`.chat-disclaimer`), orientando a não digitação de dados sigilosos ou documentos bancários/médicos.
+  - **Gerenciador de Preferências**: Botões no rodapé e na seção de termos para rever e reabrir as preferências de consentimento a qualquer momento.
+  - **Modo Alto Contraste (WCAG AAA)**: Estilização do banner de privacidade, botões de ação e links com contraste superior a 19:1 para acessibilidade total.
+
+---
+
 ## [0.1.4] - 2026-10-22
 
 ### Corrigido

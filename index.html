@@ -1864,6 +1864,127 @@
       40% { transform: scale(1.1); opacity: 1; }
     }
 
+    /* ===== Banner de Privacidade e Consentimento LGPD ===== */
+    .privacy-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -8px 24px rgba(16, 37, 56, 0.14);
+      padding: 18px 0;
+      z-index: 999;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+
+    .privacy-banner.hidden {
+      transform: translateY(100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .privacy-banner-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .privacy-banner-copy {
+      flex: 1;
+      min-width: 320px;
+    }
+
+    .privacy-banner-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .privacy-banner-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .privacy-banner-alert {
+      font-size: 12.5px;
+      color: #78350f;
+      background: var(--amber-bg);
+      border-left: 3px solid #d97706;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      line-height: 1.45;
+    }
+
+    .privacy-banner-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 240px;
+    }
+
+    .btn-privacy-action {
+      padding: 9px 16px;
+      font-size: 13px;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .btn-privacy-more {
+      font-size: 12px;
+      color: var(--primary);
+      text-align: center;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    .btn-privacy-more:hover {
+      color: var(--primary-dark);
+    }
+
+    .chat-privacy-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .chat-privacy-hint a {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .footer-privacy-links {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .footer-link-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      color: var(--primary);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      font-family: inherit;
+    }
+    .footer-link-btn:hover {
+      color: var(--primary-dark);
+    }
+
 
     /* ========================================================================== */
     /* ===== MODO ALTO CONTRASTE (WCAG 2.1 AAA & CONFORMIDADE VISUAL TOTAL) ===== */
@@ -2130,6 +2251,40 @@
       color: #ffeb3b !important;
     }
 
+    /* 11. Banner de Privacidade e Termos LGPD */
+    body.high-contrast .privacy-banner {
+      background: #000000 !important;
+      border-top: 2px solid #ffeb3b !important;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.9) !important;
+    }
+    body.high-contrast .privacy-banner-title {
+      color: #ffffff !important;
+    }
+    body.high-contrast .privacy-banner-desc {
+      color: #d1d5db !important;
+    }
+    body.high-contrast .privacy-banner-alert {
+      background: #451a03 !important;
+      border-left-color: #ffeb3b !important;
+      color: #fde68a !important;
+    }
+    body.high-contrast .btn-privacy-more {
+      color: #ffeb3b !important;
+    }
+    body.high-contrast .chat-privacy-hint {
+      color: #d1d5db !important;
+      border-top-color: #4b5563 !important;
+    }
+    body.high-contrast .chat-privacy-hint a {
+      color: #ffeb3b !important;
+    }
+    body.high-contrast .footer-link-btn {
+      color: #ffeb3b !important;
+    }
+    body.high-contrast .footer-privacy-links {
+      color: #d1d5db !important;
+    }
+
     /* Responsividade em Telas Pequenas */
     @media (max-width: 480px) {
       .chat-widget-container {
@@ -2220,6 +2375,7 @@
       <a href="#modelos">Modelos de requerimento</a>
       <a href="#perguntas">Perguntas frequentes</a>
       <a href="#referencias">Legislação</a>
+      <a href="#privacidade">Privacidade (LGPD)</a>
     </div>
   </nav>
 
@@ -2840,15 +2996,70 @@
         </div>
       </div>
     </section>
+
+    <!-- Seção: Privacidade e Proteção de Dados (LGPD) -->
+    <section class="section-block" id="privacidade" aria-labelledby="privacidade-heading">
+      <div class="section-header">
+        <div class="section-eyebrow">Conformidade e Proteção de Dados</div>
+        <h2 id="privacidade-heading" class="section-title">Privacidade e Termos de Uso (LGPD)</h2>
+        <p class="section-desc">Transparência total sobre o tratamento de informações, a regra de guarda temporária por 180 dias das mensagens enviadas ao assistente para aprimoramento pedagógico e seus direitos como titular conforme a Lei Federal nº 13.709/2018.</p>
+      </div>
+
+      <div class="cards-grid-4">
+        <article class="info-card">
+          <span class="info-card-icon" aria-hidden="true">🏛️</span>
+          <h3>Finalidade Cidadã</h3>
+          <p>Iniciativa comunitária sem fins lucrativos. Não comercializamos dados, não exibimos anúncios e não compartilhamos registros com terceiros para fins publicitários ou comerciais.</p>
+        </article>
+
+        <article class="info-card">
+          <span class="info-card-icon" aria-hidden="true">⏱️</span>
+          <h3>Retenção de 180 Dias</h3>
+          <p>As mensagens e dúvidas enviadas ao Guia Virtual são armazenadas de forma anônima por <strong>180 dias</strong> para fins exclusivos de auditoria pedagógica e expansão do conteúdo informativo, <strong>mesmo se você recusar cookies</strong>.</p>
+        </article>
+
+        <article class="info-card">
+          <span class="info-card-icon" aria-hidden="true">🛡️</span>
+          <h3>Rascunhos 100% Locais</h3>
+          <p>Os dados preenchidos no Gerador de Requerimento (nome, CPF, título) são mantidos estritamente na memória do seu próprio navegador (<code>localStorage</code>) e <strong>jamais são transmitidos a servidores externos</strong>.</p>
+        </article>
+
+        <article class="info-card">
+          <span class="info-card-icon" aria-hidden="true">⚖️</span>
+          <h3>Direitos do Titular</h3>
+          <p>Você pode consultar informações tratadas, revogar consentimentos opcionais ou tirar dúvidas com o Encarregado de Dados pelo e-mail <code>rkvasne@gmail.com</code> (Art. 18 da LGPD).</p>
+        </article>
+      </div>
+
+      <div class="callout-box info" style="margin-top: 24px;">
+        <span aria-hidden="true" style="font-size: 24px;">ℹ️</span>
+        <div>
+          <strong>Por que as dúvidas do assistente ficam guardadas mesmo se eu recusar cookies?</strong>
+          <p style="margin-top: 6px; font-size: 14px; line-height: 1.6;">
+            O uso do atendente virtual é facultativo e voluntário. Ao submeter uma pergunta, a retenção temporária do texto por <strong>180 dias</strong> decorre diretamente da <em>execução de serviço solicitado a pedido do próprio titular</em> (Art. 7º, V da LGPD) e do <em>legítimo interesse na calibração e aprimoramento pedagógico do portal</em> (Art. 7º, IX da LGPD).
+            As perguntas são armazenadas de forma dissociada de qualquer documento ou identidade civil. <strong>Aviso preventivo:</strong> nunca digite senhas, dados bancários, números de benefícios ou relatórios médicos sigilosos na caixa de diálogo do assistente.
+          </p>
+          <div style="margin-top: 14px;">
+            <button type="button" class="btn-secondary" id="btn-reopen-privacy">
+              ⚙️ Gerenciar preferências de privacidade e cookies
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Rodapé -->
   <footer class="footer no-print" role="contentinfo">
     <div class="wrap footer-inner">
       <div>
-        <strong>Autismo & Direitos</strong> · Versão 0.1.4
+        <strong>Autismo & Direitos</strong> · Versão 0.1.5
         <br />
         <small>Iniciativa cidadã e independente de apoio à inclusão. Este portal não possui vínculo oficial com o Tribunal Superior Eleitoral (TSE) ou Tribunais Regionais Eleitorais (TREs).</small>
+        <div class="footer-privacy-links">
+          <a href="#privacidade" style="color: inherit; text-decoration: underline;">Política de Privacidade & LGPD</a> ·
+          <button type="button" class="footer-link-btn" id="btn-reopen-privacy-footer" aria-label="Gerenciar preferências de privacidade e cookies">Gerenciar Privacidade / Cookies</button>
+        </div>
       </div>
       <div>
         <a href="#top" class="back-top-link">Voltar ao topo ↑</a>
@@ -2913,6 +3124,9 @@
                 <span aria-hidden="true">📝</span> Quero preparar um requerimento agora
               </button>
             </div>
+            <div class="chat-privacy-hint" style="margin-top: 12px; font-size: 11.5px; opacity: 0.9; line-height: 1.4;">
+              🔒 <strong>Privacidade:</strong> As dúvidas enviadas são mantidas anonimizadas por 180 dias exclusivamente para aprimoramento pedagógico do portal (mesmo com cookies recusados). Não informe dados pessoais sensíveis ou números de documentos.
+            </div>
           </div>
         </div>
       </div>
@@ -2927,6 +3141,9 @@
         </div>
         <div class="chat-disclaimer">
           Orientações informativas com base no Art. 15 da Res. TSE nº 23.659/2021. Não substitui decisão judicial oficial.
+          <div class="chat-privacy-hint" style="margin-top: 4px;">
+            🔒 Mensagens arquivadas por 180 dias para aprimoramento do guia, mesmo com cookies recusados. <a href="#privacidade" style="color: inherit; text-decoration: underline;">Termos LGPD</a>
+          </div>
         </div>
       </form>
     </div>
@@ -2944,6 +3161,28 @@
     </button>
   </aside>
 
+  <!-- Banner Flutuante de Privacidade e Cookies (LGPD) -->
+  <aside class="privacy-banner hidden" id="privacy-banner" role="dialog" aria-labelledby="privacy-banner-title" aria-describedby="privacy-banner-desc">
+    <div class="privacy-banner-content">
+      <div class="privacy-banner-icon" aria-hidden="true">🛡️</div>
+      <div class="privacy-banner-text">
+        <h3 id="privacy-banner-title">Sua Privacidade e Proteção de Dados (LGPD)</h3>
+        <p id="privacy-banner-desc">
+          Utilizamos armazenamento local apenas para lembrar suas preferências e o rascunho do formulário.
+          <strong>Aviso importante:</strong> Mesmo que você recuse cookies ou telemetria adicional, as perguntas enviadas voluntariamente ao Guia Virtual ficam armazenadas de forma anônima por <strong>180 dias</strong> para melhorias pedagógicas do conteúdo do portal (Art. 7º, V e IX da Lei nº 13.709/2018).
+        </p>
+      </div>
+      <div class="privacy-banner-actions">
+        <button type="button" class="btn-privacy-action btn-privacy-accept" id="btn-privacy-accept-all">
+          Aceitar Todos
+        </button>
+        <button type="button" class="btn-privacy-action btn-privacy-reject" id="btn-privacy-essential-only">
+          Apenas Essenciais (Recusar Telemetria)
+        </button>
+      </div>
+    </div>
+  </aside>
+
   <!-- Script de Interatividade e Acessibilidade -->
   <script>
     (function () {
@@ -2952,6 +3191,104 @@
       // Utilitários de seleção
       const $ = id => document.getElementById(id);
       const $$ = sel => document.querySelectorAll(sel);
+
+      /* ============================================================
+         0. PRIVACIDADE E CONSENTIMENTO LGPD (RETENÇÃO DE 180 DIAS)
+         ============================================================ */
+      const privacyBanner = $('privacy-banner');
+      const btnPrivacyAcceptAll = $('btn-privacy-accept-all');
+      const btnPrivacyEssentialOnly = $('btn-privacy-essential-only');
+      const btnReopenPrivacy = $('btn-reopen-privacy');
+      const btnReopenPrivacyFooter = $('btn-reopen-privacy-footer');
+
+      const CONSENT_KEY = 'tea_lgpd_consent'; // 'all' | 'essential'
+      const CHAT_VAULT_KEY = 'tea_chat_vault'; // local audit vault
+      const RETENTION_DAYS = 180;
+      const RETENTION_MS = RETENTION_DAYS * 24 * 60 * 60 * 1000;
+
+      // Gerar ou recuperar identificador anônimo de sessão para correlação de dúvidas
+      let teaSessionId = '';
+      try {
+        teaSessionId = sessionStorage.getItem('tea_session_id');
+        if (!teaSessionId) {
+          teaSessionId = 'tea_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now();
+          sessionStorage.setItem('tea_session_id', teaSessionId);
+        }
+      } catch (e) {
+        teaSessionId = 'tea_ephemeral_' + Date.now();
+      }
+
+      function checkPrivacyBanner() {
+        try {
+          const consent = localStorage.getItem(CONSENT_KEY);
+          if (!consent && privacyBanner) {
+            privacyBanner.classList.remove('hidden');
+          }
+        } catch (e) {}
+      }
+
+      function setConsent(choice) {
+        try {
+          localStorage.setItem(CONSENT_KEY, choice);
+        } catch (e) {}
+        if (privacyBanner) privacyBanner.classList.add('hidden');
+      }
+
+      if (btnPrivacyAcceptAll) {
+        btnPrivacyAcceptAll.addEventListener('click', () => setConsent('all'));
+      }
+      if (btnPrivacyEssentialOnly) {
+        btnPrivacyEssentialOnly.addEventListener('click', () => setConsent('essential'));
+      }
+
+      function reopenPrivacySettings() {
+        if (privacyBanner) {
+          privacyBanner.classList.remove('hidden');
+          privacyBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+      if (btnReopenPrivacy) btnReopenPrivacy.addEventListener('click', reopenPrivacySettings);
+      if (btnReopenPrivacyFooter) btnReopenPrivacyFooter.addEventListener('click', reopenPrivacySettings);
+
+      checkPrivacyBanner();
+
+      // Limpeza e salvamento no cofre local de auditoria (180 dias de retenção estrita)
+      function pruneAndSaveChatVault(userMsg, assistantMsg) {
+        try {
+          const now = Date.now();
+          const raw = localStorage.getItem(CHAT_VAULT_KEY);
+          let vault = raw ? JSON.parse(raw) : [];
+          if (!Array.isArray(vault)) vault = [];
+
+          // Purgar mensagens com mais de 180 dias
+          vault = vault.filter(entry => {
+            return entry && entry.timestamp && (now - entry.timestamp < RETENTION_MS);
+          });
+
+          if (userMsg) {
+            vault.push({
+              sessionId: teaSessionId,
+              timestamp: now,
+              expiresAt: now + RETENTION_MS,
+              retentionDays: RETENTION_DAYS,
+              userMessage: userMsg.substring(0, 2000),
+              assistantResponse: (assistantMsg || '').substring(0, 3000)
+            });
+          }
+
+          // Manter no máximo 200 registros locais mais recentes se passar do limite
+          if (vault.length > 200) {
+            vault = vault.slice(vault.length - 200);
+          }
+
+          localStorage.setItem(CHAT_VAULT_KEY, JSON.stringify(vault));
+        } catch (e) {
+          console.warn('Erro ao atualizar cofre local de mensagens:', e);
+        }
+      }
+
+      // Executa expurgo preventivo de registros com mais de 180 dias
+      pruneAndSaveChatVault();
 
       /* ============================================================
          1. ACESSIBILIDADE: CONTRASTE E TAMANHO DE FONTE
@@ -3647,7 +3984,8 @@ Assinatura do(a) requerente ou representante legal`;
                 body: JSON.stringify({
                   messages: chatHistory,
                   apiKey: userApiKey,
-                  model: userModel
+                  model: userModel,
+                  sessionId: teaSessionId
                 })
               });
 
@@ -3665,18 +4003,23 @@ Assinatura do(a) requerente ou representante legal`;
           hideTyping();
 
           let aiReply = responseData?.choices?.[0]?.message?.content;
+          let finalReply = '';
 
           if (aiReply) {
+            finalReply = aiReply;
             renderMessage('assistant', aiReply);
             chatHistory.push({ role: 'assistant', content: aiReply });
             saveSessionHistory();
           } else {
             // Fallback: Base local acolhedora, rica e resolutiva
-            const localReply = getLocalEmpathicResponse(text);
-            renderMessage('assistant', localReply);
-            chatHistory.push({ role: 'assistant', content: localReply });
+            finalReply = getLocalEmpathicResponse(text);
+            renderMessage('assistant', finalReply);
+            chatHistory.push({ role: 'assistant', content: finalReply });
             saveSessionHistory();
           }
+
+          // Guardar mensagem e resposta com retenção estrita de 180 dias para aprimoramento pedagógico
+          pruneAndSaveChatVault(text, finalReply);
         } catch (error) {
           hideTyping();
           console.error('Erro no atendimento:', error);
@@ -3684,6 +4027,7 @@ Assinatura do(a) requerente ou representante legal`;
           renderMessage('assistant', fallback);
           chatHistory.push({ role: 'assistant', content: fallback });
           saveSessionHistory();
+          pruneAndSaveChatVault(text, fallback);
         } finally {
           chatBtnSend.disabled = false;
         }
