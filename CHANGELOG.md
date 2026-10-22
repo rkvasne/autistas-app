@@ -4,6 +4,20 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.1.4] - 2026-10-22
+
+### Corrigido
+- **Consistência Visual e Acessibilidade do Modo Alto Contraste (WCAG AAA)**:
+  - **Barra de Navegação Principal (`.nav`)**: Correção crítica que resolvia a faixa branca com links invisíveis; agora renderiza com fundo escuro sólido `#000000`, borda inferior `#4b5563` e links em branco com hover amarelo `#ffeb3b`.
+  - **Botões de Ação (`.btn-primary` e `.btn-secondary`)**: Resolução do texto branco ilegível sobre fundo amarelo (`#ffeb3b`) em botões como *"Entenda como proceder →"* e *"🖨️ Imprimir / Salvar em PDF"*; agora apresentam tipografia em preto sólido `#000000` em peso `800` (proporção de contraste superior a 19:1).
+  - **Cards de Ação Rápida (`.action-card`)**: Eliminação de texto branco/cinza sobre fundos pastéis claros; os cards agora adotam superfícies escuras `#111827` com bordas luminosas de alta fidelidade nas cores de cada categoria (azul céu, esmeralda, violeta e âmbar) e badges de seta com fundo escuro e foco amarelo.
+  - **Caixa de Pré-visualização do Requerimento (`.document-preview-box`)**: Ajuste de tela para modo escuro de alto contraste (`#000000` com texto `#ffffff` e borda `2px solid #ffffff`), eliminando o ofuscamento visual provocado pela folha branca no meio do tema escuro (a impressão física continua preservada como folha de papel preto e branco limpa).
+  - **Campos de Formulário e Entradas**: Contornos de `2px` reforçados em `#6b7280`, com realce de foco amarelo `#ffeb3b` e labels nítidas em branco.
+  - **Botão Flutuante do Guia Virtual (`.chat-launcher-btn`)**: Substituição do emoji `💬` por ícone vetorial SVG com traço adaptativo, exibindo contorno preto sólido sobre o círculo amarelo em modo alto contraste.
+  - **Numeração de Passos (`.step-badge`) e FAQ**: Badges com fundo de alto contraste e texto escuro legível, e acordeão de perguntas frequentes com realce ao abrir.
+
+---
+
 ## [0.1.3] - 2026-10-22
 
 ### Modificado
