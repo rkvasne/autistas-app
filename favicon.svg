@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Fundo com cantos arredondados -->
+  <rect width="64" height="64" rx="14" fill="#ffffff" stroke="#dbe4ec" stroke-width="1"/>
+  
+  <!-- Quebra-cabeça do Autismo (4 peças entrelaçadas) -->
+  <g transform="translate(6, 6) scale(0.8125)">
+    <!-- Peça 1: Azul Real (Superior Esquerda) -->
+    <path d="M 8 8 L 32 8 L 32 16 C 36 16 38 18 38 21 C 38 24 36 26 32 26 L 32 32 L 26 32 C 26 28 24 26 21 26 C 18 26 16 28 16 32 L 8 32 Z" fill="#1e88e5"/>
+    
+    <!-- Peça 2: Amarelo Ouro (Superior Direita) -->
+    <path d="M 32 8 L 56 8 L 56 32 L 50 32 C 50 36 48 38 45 38 C 42 38 40 36 40 32 L 32 32 L 32 26 C 36 26 38 24 38 21 C 38 18 36 16 32 16 Z" fill="#fbc02d"/>
+    
+    <!-- Peça 3: Azul Ciano (Inferior Esquerda) -->
+    <path d="M 8 32 L 16 32 C 16 28 18 26 21 26 C 24 26 26 28 26 32 L 32 32 L 32 40 C 36 40 38 42 38 45 C 38 48 36 50 32 50 L 32 56 L 8 56 Z" fill="#00bcd4"/>
+    
+    <!-- Peça 4: Vermelho (Inferior Direita) -->
+    <path d="M 32 32 L 40 32 C 40 36 42 38 45 38 C 48 38 50 36 50 32 L 56 32 L 56 56 L 32 56 L 32 50 C 36 50 38 48 38 45 C 38 42 36 40 32 40 Z" fill="#e53935"/>
+  </g>
+</svg>

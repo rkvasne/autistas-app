@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Gradiente do Espectro / Arco-íris da Neurodiversidade -->
+    <linearGradient id="spectrumGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="25%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="75%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <!-- Fundo Azul Noturno Tecnológico com cantos arredondados -->
+  <rect width="64" height="64" rx="14" fill="#112d47"/>
+  
+  <!-- Símbolo do Infinito da Neurodiversidade -->
+  <path d="M22 24 C16.5 24 12 28 12 32 C12 36 16.5 40 22 40 C28 40 32 32 32 32 C32 32 36 24 42 24 C47.5 24 52 28 52 32 C52 36 47.5 40 42 40 C36 40 32 32 32 32 C32 32 28 24 22 24 Z" 
+        fill="none" 
+        stroke="url(#spectrumGradient)" 
+        stroke-width="7" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+</svg>
