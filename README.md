@@ -1,27 +1,31 @@
-# Guia TEA & Voto — Direitos Eleitorais e Acessibilidade (v0.1.0)
+# Autismo & Direitos — Guia Prático de Cidadania e Inclusão (v0.1.1)
 
-> **Iniciativa Cidadã e Independente:** Este portal é um guia informativo da sociedade civil destinado a pessoas autistas, suas famílias e representantes legais. **Não é uma página governamental oficial** do Tribunal Superior Eleitoral (TSE) ou dos Tribunais Regionais Eleitorais (TREs). Para serviços e certidões oficiais, consulte sempre o portal do TSE ([tse.jus.br](https://www.tse.jus.br)).
+> **Iniciativa Cidadã e Independente:** Este portal é uma plataforma informativa da sociedade civil destinada a pessoas autistas, suas famílias e representantes legais. **Não é uma página governamental oficial** do Tribunal Superior Eleitoral (TSE) ou dos Tribunais Regionais Eleitorais (TREs). Para serviços e certidões oficiais, consulte sempre o portal do TSE ([tse.jus.br](https://www.tse.jus.br)).
 
 ---
 
 ## 📌 Visão Geral
 
-O projeto **Guia TEA & Voto** foi desenvolvido para desmistificar regras eleitorais, assegurar o exercício de direitos e fornecer ferramentas práticas de cidadania para pessoas com Transtorno do Espectro Autista (TEA).
+O portal **Autismo & Direitos** foi concebido para simplificar a legislação, assegurar o exercício da cidadania e fornecer ferramentas práticas para pessoas autistas e suas famílias. O módulo atual contempla detalhadamente os **Direitos Eleitorais e Acessibilidade nas Eleições**, com arquitetura preparada para novos módulos (saúde, educação, carteira CIPTEA e benefícios sociais).
 
 ### Principais Funcionalidades:
-1. **Assistente de Triagem Orientada (Wizard):** Diagnóstico rápido em 3 etapas que orienta o cidadão de acordo com sua situação concreta (desejo de votar com acessibilidade, dificuldade excessiva para comparecer, registro de deficiência ou pendências cadastrais).
-2. **Gerador Dinâmico de Requerimentos Jurídicos:** Editor em tempo real com pré-visualização instantânea para elaboração de petições fundamentadas no **Art. 15 da Resolução TSE nº 23.659/2021** (isenção de sanções ou certidão por prazo indeterminado), acessibilidade ou regularização.
+1. **Guia Virtual de Atendimento ("Pegando na Mão do Cidadão"):** Atendente conversacional no canto inferior direito que acolhe o cidadão de forma calorosa, didática e empática, esclarecendo dúvidas sobre voto, Artigo 15, BPC/LOAS, acompanhante e geração de petições.
+   - **Operação Transparente e Sem Fricção:** O atendente já vem pronto e 100% configurado de fábrica no backend, sem exigir configurações nem expor termos técnicos ou seleção de modelos para o usuário final.
+   - **Arquitetura Resiliente:** Rota serverless segura `/api/chat` integrada ao OpenRouter (GPT-4o-mini), aliada a uma base empática local que responde prontamente mesmo sem conexão.
+   - **Navegação Guiada Interativa:** O atendente insere atalhos interativos que rolam suavemente a página até a ferramenta correta (ex: gerador de requerimento).
+2. **Assistente de Triagem Orientada (Wizard):** Diagnóstico rápido em 3 etapas que orienta o cidadão de acordo com sua situação concreta (desejo de votar com acessibilidade, dificuldade excessiva para comparecer, registro de deficiência ou pendências cadastrais).
+3. **Gerador Dinâmico de Requerimentos Jurídicos:** Editor em tempo real com pré-visualização instantânea para elaboração de petições fundamentadas no **Art. 15 da Resolução TSE nº 23.659/2021** (isenção de sanções ou certidão por prazo indeterminado), acessibilidade ou regularização.
    - **Salvamento Automático de Rascunho (`localStorage`):** Os dados digitados são preservados mesmo se a página for fechada ou recarregada.
    - **Máscara Automática de Título de Eleitor:** Formatação inteligente em blocos (`0000 0000 0000`).
-3. **Download Direto (.txt) e Impressão (PDF/A4):** Opção de baixar o requerimento preenchido em arquivo de texto plano formatado e estilos dedicados (`@media print`) para impressão direta e limpa.
-4. **Cópia Instantânea:** Botão para cópia do texto com feedback visual (`toast`).
-5. **Recursos de Acessibilidade (WCAG 2.1 AA/AAA):**
-   - Alternador de Alto Contraste para baixa visão ou sensibilidade à luz.
+4. **Download Direto (.txt) e Impressão (PDF/A4):** Opção de baixar o requerimento preenchido em arquivo de texto plano formatado e estilos dedicados (`@media print`) para impressão direta e limpa.
+5. **Cópia Instantânea:** Botão para cópia do texto com feedback visual (`toast`).
+6. **Recursos de Acessibilidade (WCAG 2.1 AA/AAA):**
+   - Alternador de Alto Contraste para baixa visão ou sensibilidade à luz (aplicado também ao chat).
    - Ajuste dinâmico de tamanho de tipografia (`A+`, `A`, `A-`).
    - Busca em tempo real com realce de tópicos e perguntas frequentes.
    - Navegação por teclado completa (`:focus-visible`).
-6. **Representatividade e Diversidade Étnica:** Direção de arte editorial 2D que reflete o mosaico plural da população brasileira (pessoas pardas, negras, brancas e com diferentes traços regionais).
-7. **Esclarecimento sobre Benefícios e Documentos:** Orientações sobre a independência do CPF (Receita Federal) e do BPC/LOAS (INSS/MDS) em relação a faltas eleitorais.
+7. **Representatividade e Diversidade Étnica:** Direção de arte editorial 2D que reflete o mosaico plural da população brasileira (pessoas pardas, negras, brancas e com diferentes traços regionais).
+8. **Esclarecimento Preciso sobre Documentos e Benefícios:** Informações exatas sobre a independência do CPF (Receita Federal) e do BPC/LOAS (INSS/MDS) — que nunca são cancelados por falta de voto —, diferenciando do Título de Eleitor (que pode ser cancelado após 3 eleições sem justificativa) e demonstrando como o Art. 15 da Resolução TSE nº 23.659/2021 protege a pessoa autista contra qualquer penalidade.
 
 ---
 
@@ -29,8 +33,14 @@ O projeto **Guia TEA & Voto** foi desenvolvido para desmistificar regras eleitor
 
 ```
 autistas-app/
-├── index.html                   # Aplicação web principal de alta performance
+├── index.html                   # Aplicação web principal com widget de chat integrado
+├── favicon.svg                  # Favicon vetorial oficial (Quebra-Cabeça Colorido)
+├── favicon-infinity.svg         # Favicon vetorial alternativo (Infinito da Neurodiversidade)
+├── api/
+│   └── chat.js                  # Serverless function (Vercel) intermediando OpenRouter
 ├── assets/
+│   ├── favicon-puzzle.png              # Ícone HD (Quebra-Cabeça Colorido)
+│   ├── favicon-infinity.png            # Ícone HD (Infinito da Neurodiversidade)
 │   ├── hero-illustration.png           # Principal (Hero): Jovem autista com olhar de esperança e cabine com urna eletrônica
 │   ├── acessibilidade-inclusao.png     # Seção 1: Jovem mulher autista com fones abafadores e pai em escola acessível (2D editorial)
 │   ├── orientacao-cidadania.png        # Seção 2: Apoio familiar e organização de documentos e triagem (2D editorial)
@@ -39,7 +49,7 @@ autistas-app/
 │   └── arquivo/                        # Acervo histórico com todas as 20 variações e versões de estudo preservadas
 ├── CHANGELOG.md                 # Registro cronológico detalhado de lançamentos e versões
 ├── LICENSE                      # Licença de código aberto MIT
-├── package.json                 # Metadados do projeto (v0.1.0) e scripts de execução
+├── package.json                 # Metadados do projeto (v0.1.1) e scripts de execução
 ├── .gitignore                   # Filtro de arquivos do SO, IDEs e dependências
 ├── vercel.json                  # Configuração de segurança e deploy na Vercel
 ├── netlify.toml                 # Configuração de deploy no Netlify
@@ -68,6 +78,12 @@ Acesse `http://localhost:3000` no navegador.
 python -m http.server 3000
 ```
 Acesse `http://localhost:3000`.
+
+### Verificação de Integridade
+```bash
+npm run verify
+```
+Executa a validação sintática das funções serverless e rotas da API.
 
 ---
 

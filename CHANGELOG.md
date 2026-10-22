@@ -4,6 +4,35 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.1.1] - 2026-10-21
+
+### Adicionado
+- **Guia Virtual de Atendimento ("Guia Virtual Autismo & Direitos")**:
+  - Widget flutuante de acolhimento e assistência ao cidadão, com respostas empáticas para dúvidas sobre votação com acessibilidade, acompanhante, justificativa e dispensa.
+  - Integração Serverless na Vercel (`api/chat.js`) utilizando `openai/gpt-4o-mini` via OpenRouter com fallback local resiliente.
+  - Navegação assistida que rola suavemente a página até as seções correspondentes (ex.: gerador de requerimento `#modelos`, triagem `#orientacao`).
+  - Atendimento humanizado sem fricção técnica: modelos e chaves configurados internamente, sem expor configurações complexas de IA para o usuário final.
+- **Identidade Visual e Favicons Oficiais**:
+  - Favicon oficial do Quebra-Cabeça Colorido do Autismo (`favicon.svg`, `assets/favicon-puzzle.png`).
+  - Favicon alternativo do Infinito da Neurodiversidade (`favicon-infinity.svg`, `assets/favicon-infinity.png`).
+  - Metatags completas de Open Graph e Twitter Card para compartilhamento com prévia rica no WhatsApp e redes sociais.
+- **Script de Integridade**: Inclusão de `npm run verify` (`node -c api/chat.js`) para validação estática de sintaxe.
+
+### Modificado
+- **Rebranding e Expansão da Marca**:
+  - Transição de "Guia TEA & Voto" para **"Autismo & Direitos"** (com subtítulo "Módulo Direitos Eleitorais"), preparando a base para expansão contínua em outros direitos essenciais (saúde, educação e benefícios).
+- **Ergonomia e Posicionamento do Modal de Atendimento**:
+  - Ancoragem na base (`bottom: 20px; right: 20px;`), com recolhimento suave do botão circular quando o chat abre, eliminando a sensação de janela "alta demais".
+  - Largura ajustada de 330px para **380px** (`max-width: calc(100vw - 32px)`), permitindo que mensagens e chips de dúvidas frequentes fluam em linha única sem quebras prematuras de termos jurídicos.
+  - Responsividade mobile aprimorada (`width: 100%` com margem de 12px da base).
+- **Precisão Jurídica sobre Título de Eleitor vs. CPF/BPC**:
+  - Esclarecimento pedagógico em todas as seções e no atendente: o Título eleitoral pode ser cancelado após 3 eleições consecutivas sem justificativa/multa, mas o **CPF e o BPC/LOAS nunca são cancelados** por motivos eleitorais.
+  - Destaque para a blindagem definitiva garantida pelo Art. 15 da Resolução TSE nº 23.659/2021.
+
+### Aprendizado da Release
+- **Fato observado (Interação):** A exposição de engrenagens técnicas e seleção de modelos gerava ruído e insegurança para o público-alvo (famílias atípicas). A interface humanizada e pronta de fábrica entrega acolhimento superior.
+- **Fato observado (Jurídico):** O temor de cancelamento de CPF é o maior boato que afasta pessoas autistas e responsáveis do cartório eleitoral; a distinção pedagógica entre o cancelamento do Título e a segurança do CPF/BPC transformou o Artigo 15 no remédio legal central e compreensível do app.
+
 ---
 
 ## [0.1.0] - 2026-10-20
