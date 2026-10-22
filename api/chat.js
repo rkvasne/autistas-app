@@ -86,6 +86,7 @@ export default async function handler(req, res) {
     });
   }
 
+  try {
     const { messages, apiKey: clientApiKey, model: clientModel, sessionId: clientSessionId } = req.body || {};
 
     // Identificador de sessão anônimo para auditoria LGPD

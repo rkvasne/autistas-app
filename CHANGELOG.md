@@ -4,6 +4,15 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.1.6] - 2026-10-22
+
+### Corrigido
+- **Correção de Sintaxe no Backend Serverless (`api/chat.js`)**:
+  - Inclusão do bloco `try {` ausente no início do processamento da rota `handler`, eliminando o erro de sintaxe `Unexpected token 'catch'` e `'try' expected` detectado pelo analisador estático da IDE.
+  - Adição de `"type": "module"` no `package.json` para reconhecimento explícito de ES Modules pelo Node.js, assegurando compilação estrita e sem avisos de performance durante `npm run verify`.
+
+---
+
 ## [0.1.5] - 2026-10-22
 
 ### Adicionado
