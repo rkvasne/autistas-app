@@ -1864,89 +1864,231 @@
       40% { transform: scale(1.1); opacity: 1; }
     }
 
-    /* ===== Banner de Privacidade e Consentimento LGPD ===== */
+    /* ===== Card Flutuante de Privacidade e Consentimento LGPD ===== */
+    .privacy-card,
     .privacy-banner {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 24px;
+      left: 24px;
+      width: 420px;
+      max-width: calc(100vw - 32px);
       background: var(--surface);
-      border-top: 1px solid var(--border);
-      box-shadow: 0 -8px 24px rgba(16, 37, 56, 0.14);
-      padding: 18px 0;
-      z-index: 999;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 16px 45px rgba(17, 45, 71, 0.22), 0 0 0 1px rgba(23, 77, 118, 0.06);
+      padding: 16px 18px;
+      z-index: 9990;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: privacyCardIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, visibility 0.25s;
     }
 
+    .privacy-card.hidden,
     .privacy-banner.hidden {
-      transform: translateY(100%);
+      transform: translateY(16px) scale(0.96);
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
     }
 
-    .privacy-banner-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
+    @keyframes privacyCardIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
-    .privacy-banner-copy {
+    .privacy-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .privacy-card-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--soft-blue);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .privacy-card-heading {
       flex: 1;
-      min-width: 320px;
+      min-width: 0;
     }
 
-    .privacy-banner-title {
+    .privacy-card-title {
+      font-size: 14.5px;
+      font-weight: 750;
+      color: var(--navy);
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+    }
+
+    .privacy-card-badge {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--teal-text);
+      background: var(--teal-bg);
+      border: 1px solid var(--teal-border);
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-top: 2px;
+    }
+
+    .privacy-card-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 16px;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: 6px;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .privacy-card-close:hover {
+      background: rgba(0, 0, 0, 0.06);
+      color: var(--ink);
     }
 
-    .privacy-banner-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 8px;
-    }
-
-    .privacy-banner-alert {
-      font-size: 12.5px;
-      color: #78350f;
-      background: var(--amber-bg);
-      border-left: 3px solid #d97706;
-      padding: 8px 12px;
-      border-radius: var(--radius-sm);
-      line-height: 1.45;
-    }
-
-    .privacy-banner-actions {
+    .privacy-card-body {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      min-width: 240px;
     }
 
-    .btn-privacy-action {
-      padding: 9px 16px;
-      font-size: 13px;
-      text-align: center;
-      justify-content: center;
+    .privacy-card-text {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin: 0;
     }
 
-    .btn-privacy-more {
-      font-size: 12px;
-      color: var(--primary);
+    .privacy-card-callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 3px solid #d97706;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 11.5px;
+      color: #92400e;
+      line-height: 1.4;
+    }
+
+    .privacy-card-callout .callout-icon {
+      font-size: 14px;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    .privacy-card-callout strong {
+      color: #78350f;
+    }
+
+    .privacy-card-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .privacy-card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-privacy-primary,
+    .btn-privacy-action.btn-privacy-accept {
+      background: var(--primary);
+      color: #ffffff;
+      border: 1px solid var(--primary-dark);
+      border-radius: var(--radius-md);
+      padding: 9px 12px;
+      font-size: 12.5px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
       text-align: center;
+      transition: background 0.15s, transform 0.1s;
+      outline: none;
+    }
+    .btn-privacy-primary:hover,
+    .btn-privacy-action.btn-privacy-accept:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-privacy-secondary,
+    .btn-privacy-action.btn-privacy-reject {
+      background: var(--bg);
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 9px 12px;
+      font-size: 12.5px;
       font-weight: 600;
-      text-decoration: underline;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+      outline: none;
     }
-    .btn-privacy-more:hover {
+    .btn-privacy-secondary:hover,
+    .btn-privacy-action.btn-privacy-reject:hover {
+      background: var(--surface);
+      border-color: var(--border-focus);
+      transform: translateY(-1px);
+    }
+
+    .privacy-card-links {
+      text-align: center;
+    }
+
+    .privacy-card-link {
+      font-size: 11.5px;
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .privacy-card-link:hover {
       color: var(--primary-dark);
+    }
+
+    @media (max-width: 640px) {
+      .privacy-card,
+      .privacy-banner {
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+        width: auto;
+        max-width: none;
+        padding: 14px;
+      }
+      .privacy-card-actions {
+        grid-template-columns: 1fr;
+      }
     }
 
     .chat-privacy-hint {
@@ -2251,23 +2393,74 @@
       color: #ffeb3b !important;
     }
 
-    /* 11. Banner de Privacidade e Termos LGPD */
+    /* 11. Card Flutuante de Privacidade e Termos LGPD */
+    body.high-contrast .privacy-card,
     body.high-contrast .privacy-banner {
       background: #000000 !important;
-      border-top: 2px solid #ffeb3b !important;
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.9) !important;
+      border: 2px solid #ffeb3b !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.95), 0 0 0 1px #ffeb3b !important;
     }
+    body.high-contrast .privacy-card-icon {
+      background: #111827 !important;
+      border: 1px solid #ffeb3b !important;
+    }
+    body.high-contrast .privacy-card-title,
     body.high-contrast .privacy-banner-title {
       color: #ffffff !important;
     }
+    body.high-contrast .privacy-card-badge {
+      background: #111827 !important;
+      color: #ffeb3b !important;
+      border-color: #ffeb3b !important;
+    }
+    body.high-contrast .privacy-card-close {
+      color: #ffffff !important;
+    }
+    body.high-contrast .privacy-card-close:hover {
+      background: #ffeb3b !important;
+      color: #000000 !important;
+    }
+    body.high-contrast .privacy-card-text,
     body.high-contrast .privacy-banner-desc {
-      color: #d1d5db !important;
+      color: #ffffff !important;
     }
+    body.high-contrast .privacy-card-callout,
     body.high-contrast .privacy-banner-alert {
-      background: #451a03 !important;
-      border-left-color: #ffeb3b !important;
-      color: #fde68a !important;
+      background: #111827 !important;
+      border: 1px solid #ffeb3b !important;
+      border-left: 3px solid #ffeb3b !important;
+      color: #ffffff !important;
     }
+    body.high-contrast .privacy-card-callout strong {
+      color: #ffeb3b !important;
+    }
+    body.high-contrast .btn-privacy-primary,
+    body.high-contrast .btn-privacy-action.btn-privacy-accept {
+      background: #ffeb3b !important;
+      color: #000000 !important;
+      font-weight: 800 !important;
+      border: 2px solid #ffd600 !important;
+      box-shadow: none !important;
+    }
+    body.high-contrast .btn-privacy-primary:hover,
+    body.high-contrast .btn-privacy-action.btn-privacy-accept:hover {
+      background: #ffffff !important;
+      color: #000000 !important;
+    }
+    body.high-contrast .btn-privacy-secondary,
+    body.high-contrast .btn-privacy-action.btn-privacy-reject {
+      background: #111827 !important;
+      color: #ffffff !important;
+      border: 2px solid #4b5563 !important;
+      font-weight: 700 !important;
+    }
+    body.high-contrast .btn-privacy-secondary:hover,
+    body.high-contrast .btn-privacy-action.btn-privacy-reject:hover {
+      background: #1f2937 !important;
+      border-color: #ffeb3b !important;
+      color: #ffeb3b !important;
+    }
+    body.high-contrast .privacy-card-link,
     body.high-contrast .btn-privacy-more {
       color: #ffeb3b !important;
     }
@@ -3053,7 +3246,7 @@
   <footer class="footer no-print" role="contentinfo">
     <div class="wrap footer-inner">
       <div>
-        <strong>Autismo & Direitos</strong> · Versão 0.1.6
+        <strong>Autismo & Direitos</strong> · Versão 0.1.7
         <br />
         <small>Iniciativa cidadã e independente de apoio à inclusão. Este portal não possui vínculo oficial com o Tribunal Superior Eleitoral (TSE) ou Tribunais Regionais Eleitorais (TREs).</small>
         <div class="footer-privacy-links">
@@ -3161,24 +3354,40 @@
     </button>
   </aside>
 
-  <!-- Banner Flutuante de Privacidade e Cookies (LGPD) -->
-  <aside class="privacy-banner hidden" id="privacy-banner" role="dialog" aria-labelledby="privacy-banner-title" aria-describedby="privacy-banner-desc">
-    <div class="privacy-banner-content">
-      <div class="privacy-banner-icon" aria-hidden="true">🛡️</div>
-      <div class="privacy-banner-text">
-        <h3 id="privacy-banner-title">Sua Privacidade e Proteção de Dados (LGPD)</h3>
-        <p id="privacy-banner-desc">
-          Utilizamos armazenamento local apenas para lembrar suas preferências e o rascunho do formulário.
-          <strong>Aviso importante:</strong> Mesmo que você recuse cookies ou telemetria adicional, as perguntas enviadas voluntariamente ao Guia Virtual ficam armazenadas de forma anônima por <strong>180 dias</strong> para melhorias pedagógicas do conteúdo do portal (Art. 7º, V e IX da Lei nº 13.709/2018).
-        </p>
+  <!-- Card Flutuante de Privacidade e LGPD -->
+  <aside class="privacy-card hidden" id="privacy-banner" role="dialog" aria-labelledby="privacy-card-title" aria-describedby="privacy-card-desc">
+    <div class="privacy-card-header">
+      <div class="privacy-card-icon" aria-hidden="true">🛡️</div>
+      <div class="privacy-card-heading">
+        <h3 class="privacy-card-title" id="privacy-card-title">Sua Privacidade & LGPD</h3>
+        <span class="privacy-card-badge">Lei Federal nº 13.709/2018</span>
       </div>
-      <div class="privacy-banner-actions">
-        <button type="button" class="btn-privacy-action btn-privacy-accept" id="btn-privacy-accept-all">
+      <button type="button" class="privacy-card-close" id="btn-privacy-close" aria-label="Fechar aviso de privacidade" title="Fechar">✕</button>
+    </div>
+
+    <div class="privacy-card-body" id="privacy-card-desc">
+      <p class="privacy-card-text">
+        Guardamos apenas preferências essenciais no seu navegador (tema e rascunhos).
+      </p>
+      <div class="privacy-card-callout">
+        <span class="callout-icon" aria-hidden="true">ℹ️</span>
+        <div>
+          <strong>Aviso importante:</strong> Mesmo ao recusar cookies ou telemetria, as perguntas voluntárias enviadas ao Guia Virtual ficam guardadas de forma anônima por <strong>180 dias</strong> para aprimoramento pedagógico do site (Art. 7º, V e IX da LGPD).
+        </div>
+      </div>
+    </div>
+
+    <div class="privacy-card-footer">
+      <div class="privacy-card-actions">
+        <button type="button" class="btn-privacy-primary" id="btn-privacy-accept-all">
           Aceitar Todos
         </button>
-        <button type="button" class="btn-privacy-action btn-privacy-reject" id="btn-privacy-essential-only">
-          Apenas Essenciais (Recusar Telemetria)
+        <button type="button" class="btn-privacy-secondary" id="btn-privacy-essential-only">
+          Apenas Essenciais
         </button>
+      </div>
+      <div class="privacy-card-links">
+        <a href="#privacidade" class="privacy-card-link" id="link-privacy-details">Conhecer a Política e seus Direitos →</a>
       </div>
     </div>
   </aside>
@@ -3198,6 +3407,8 @@
       const privacyBanner = $('privacy-banner');
       const btnPrivacyAcceptAll = $('btn-privacy-accept-all');
       const btnPrivacyEssentialOnly = $('btn-privacy-essential-only');
+      const btnPrivacyClose = $('btn-privacy-close');
+      const linkPrivacyDetails = $('link-privacy-details');
       const btnReopenPrivacy = $('btn-reopen-privacy');
       const btnReopenPrivacyFooter = $('btn-reopen-privacy-footer');
 
@@ -3239,6 +3450,18 @@
       }
       if (btnPrivacyEssentialOnly) {
         btnPrivacyEssentialOnly.addEventListener('click', () => setConsent('essential'));
+      }
+      if (btnPrivacyClose) {
+        btnPrivacyClose.addEventListener('click', () => setConsent('essential'));
+      }
+      if (linkPrivacyDetails) {
+        linkPrivacyDetails.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = $('privacidade');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
       }
 
       function reopenPrivacySettings() {

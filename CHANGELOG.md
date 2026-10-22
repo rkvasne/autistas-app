@@ -4,6 +4,18 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.1.7] - 2026-10-22
+
+### Modificado
+- **Redesign Visual do Componente de Consentimento e Privacidade (LGPD)**:
+  - Substituição da barra inferior fixa de largura total por um **card flutuante moderno no canto inferior esquerdo** (`.privacy-card`), eliminando a sobreposição visual com o atendente virtual no canto inferior direito.
+  - Inclusão de cabeçalho padronizado com ícone protetor `🛡️`, título *"Sua Privacidade & LGPD"*, badge de fundamentação legal (*Lei Federal nº 13.709/2018*) e botão de fechamento rápido `✕`.
+  - Caixa de destaque (*callout box*) amigável e visível detalhando a retenção anônima de 180 dias das perguntas enviadas ao assistente para aprimoramento pedagógico do site (Art. 7º, V e IX da LGPD), mesmo em caso de recusa de cookies opcionais.
+  - Alinhamento lado a lado dos botões de ação (*"Aceitar Todos"* com estilo primário elevado e *"Apenas Essenciais"* com contorno suave secundário) e link direto para os termos completos.
+  - Readequação completa do modo **Alto Contraste** (`body.high-contrast`) com bordas amarelas `#ffeb3b`, tipografia nítida e botões de alto contraste em conformidade com WCAG 2.1 AAA.
+
+---
+
 ## [0.1.6] - 2026-10-22
 
 ### Corrigido

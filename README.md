@@ -1,4 +1,4 @@
-# Autismo & Direitos — Guia Prático de Cidadania e Inclusão (v0.1.6)
+# Autismo & Direitos — Guia Prático de Cidadania e Inclusão (v0.1.7)
 
 > **Iniciativa Cidadã e Independente:** Este portal é uma plataforma informativa da sociedade civil destinada a pessoas autistas, suas famílias e representantes legais. **Não é uma página governamental oficial** do Tribunal Superior Eleitoral (TSE) ou dos Tribunais Regionais Eleitorais (TREs). Para serviços e certidões oficiais, consulte sempre o portal do TSE ([tse.jus.br](https://www.tse.jus.br)).
 
@@ -16,7 +16,7 @@ O portal **Autismo & Direitos** foi concebido para simplificar a legislação, a
    - **Persistência Dupla (Supabase / Structured Logging):** Script SQL `supabase_assistant_messages.sql` com tabela `assistant_messages`, políticas RLS, expurgo automático e fallback transparente para logs JSON estruturados em ambientes serverless.
    - **Navegação Guiada Interativa:** O atendente insere atalhos interativos que rolam suavemente a página até a ferramenta correta (ex: gerador de requerimento).
 2. **Conformidade LGPD e Transparência de Privacidade:**
-   - Banner flutuante de consentimento com opções claras ("Aceitar Todos" e "Apenas Essenciais / Recusar Telemetria").
+   - Card flutuante moderno de consentimento no canto inferior esquerdo com opções ("Aceitar Todos" e "Apenas Essenciais"), sem colidir com o assistente virtual.
    - Esclarecimento explícito sobre a retenção de 180 dias das perguntas do chat.
    - Seção dedicada `#privacidade` no portal com 4 cartões explicativos, direitos do titular (Art. 18) e canal com Encarregado de Dados.
    - Botão para reabrir e gerenciar preferências de privacidade a qualquer momento no rodapé e na seção de termos.
@@ -27,7 +27,7 @@ O portal **Autismo & Direitos** foi concebido para simplificar a legislação, a
 5. **Download Direto (.txt) e Impressão (PDF/A4):** Opção de baixar o requerimento preenchido em arquivo de texto plano formatado e estilos dedicados (`@media print`) para impressão direta e limpa.
 6. **Cópia Instantânea:** Botão para cópia do texto com feedback visual (`toast`).
 7. **Recursos de Acessibilidade (WCAG 2.1 AA/AAA):**
-   - Alternador de Alto Contraste para baixa visão ou sensibilidade à luz (aplicado também ao chat, banner e rodapé).
+   - Alternador de Alto Contraste para baixa visão ou sensibilidade à luz (aplicado também ao chat, card de privacidade e rodapé).
    - Ajuste dinâmico de tamanho de tipografia (`A+`, `A`, `A-`).
    - Busca em tempo real com realce de tópicos e perguntas frequentes.
    - Navegação por teclado completa (`:focus-visible`).
@@ -56,7 +56,7 @@ autistas-app/
 │   └── arquivo/                        # Acervo histórico com todas as 20 variações e versões de estudo preservadas
 ├── CHANGELOG.md                 # Registro cronológico detalhado de lançamentos e versões
 ├── LICENSE                      # Licença de código aberto MIT
-├── package.json                 # Metadados do projeto (v0.1.6) e scripts de execução
+├── package.json                 # Metadados do projeto (v0.1.7) e scripts de execução
 ├── supabase_assistant_messages.sql # Script SQL para Supabase/PostgreSQL com retenção de 180 dias
 ├── .gitignore                   # Filtro de arquivos do SO, IDEs e dependências
 ├── vercel.json                  # Configuração de segurança e deploy na Vercel
