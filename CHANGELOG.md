@@ -28,6 +28,9 @@ O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 - **Precisão Jurídica sobre Título de Eleitor vs. CPF/BPC**:
   - Esclarecimento pedagógico em todas as seções e no atendente: o Título eleitoral pode ser cancelado após 3 eleições consecutivas sem justificativa/multa, mas o **CPF e o BPC/LOAS nunca são cancelados** por motivos eleitorais.
   - Destaque para a blindagem definitiva garantida pelo Art. 15 da Resolução TSE nº 23.659/2021.
+- **Motor Empático e Respostas Sensoriais (Abafadores, Fones e Autonomia Local)**:
+  - Adição de base de conhecimento empática normalizada para respostas imediatas sobre **abafadores de som/ruído, fones e sensibilidade sensorial** (Leis 12.764/2012 e 13.146/2015), cordão de girassol (Lei 14.626/2023), prioridade na fila, biometria e laudos.
+  - Suporte total à execução local (`file:///`), eliminando o reset para mensagem genérica de boas-vindas e garantindo respostas precisas e acolhedoras em qualquer ambiente.
 
 ### Aprendizado da Release
 - **Fato observado (Interação):** A exposição de engrenagens técnicas e seleção de modelos gerava ruído e insegurança para o público-alvo (famílias atípicas). A interface humanizada e pronta de fábrica entrega acolhimento superior.

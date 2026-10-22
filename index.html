@@ -2591,6 +2591,9 @@
             <p>Você pode digitar qualquer dúvida abaixo ou escolher um destes assuntos rápidos:</p>
 
             <div class="chat-suggestions">
+              <button type="button" class="chat-chip" data-question="Posso ir votar com abafador de ouvido ou fone antirruído?">
+                <span aria-hidden="true">🎧</span> Posso ir com abafador de ouvido?
+              </button>
               <button type="button" class="chat-chip" data-question="Posso ter acompanhante na cabine de votação?">
                 <span aria-hidden="true">🗳️</span> Posso levar acompanhante na cabine?
               </button>
@@ -3222,31 +3225,88 @@ Assinatura do(a) requerente ou representante legal`;
         }
       }
 
-      // Base de conhecimento local e empática (respostas imediatas se sem chave ou offline)
+      // Normalizador de texto para busca semântica flexível (sem acentos e pontuação)
+      function normalizeQuestionText(str) {
+        if (!str) return '';
+        return str
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9\s]/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+
+      // Base de conhecimento local e empática (respostas imediatas, precisas e humanas)
       function getLocalEmpathicResponse(question) {
-        const q = question.toLowerCase();
+        const q = normalizeQuestionText(question);
+        if (!q) return null;
 
-        if (q.includes('acompanhante') || q.includes('cabine') || q.includes('entrar junto')) {
-          return `Sim, com certeza! 💙\n\nA legislação eleitoral (Resolução TSE nº 23.659/2021) assegura expressamente que a pessoa com deficiência ou autismo tem o direito de ingressar na cabine acompanhada por uma pessoa de sua livre escolha e estrita confiança.\n\n- O acompanhante pode prestar auxílio físico ou motor para digitar na urna;\n- O acompanhante não pode votar no lugar da pessoa nem influenciar seu voto;\n- Não é necessário autorização judicial prévia, bastando informar aos mesários na hora.\n\n[Ir para Direitos e Garantias](#direitos)`;
+        const has = (term) => q.includes(normalizeQuestionText(term));
+        const hasAny = (...terms) => terms.some(t => has(t));
+
+        // 1. Abafador de ouvido, fones e acomodação sensorial (Dúvida prioritária)
+        if (hasAny('abafador', 'abafadores', 'ouvido', 'ouvidos', 'fone', 'fones', 'ruido', 'ruidos', 'barulho', 'barulhos', 'som', 'sons', 'sensorial', 'sensoriais', 'sensibilidade', 'estimulo', 'estimulos', 'sobrecarga', 'crise', 'oculos escuro', 'lente escura', 'abafar', 'tampao')) {
+          return `Sim, com certeza! Você tem todo o direito de ir votar usando abafador de ouvido ou fone antirruído. 💙🎧\n\nO uso de **abafadores de som, fones de ouvido e óculos escuros** é um recurso legítimo de regulação e acomodação sensorial garantido pela **Lei Berenice Piana (Lei nº 12.764/2012)** e pela **Lei Brasileira de Inclusão (Lei nº 13.146/2015)**:\n\n- **Na fila e na seção:** Você pode usar seu abafador durante todo o tempo de permanência no local de votação;\n- **Dentro da cabine de votação:** Você pode permanecer com o abafador enquanto digita seu voto na urna eletrônica;\n- **Ninguém pode proibir:** Mesários, coordenadores de prédio ou fiscais partidários não podem exigir que você retire seu abafador nem qualquer outro item de conforto sensorial;\n- **Identificação facilitada:** O uso do **Cordão de Girassol** (Lei nº 14.626/2023) ou da **Carteira CIPTEA** ajuda os mesários a identificarem prontamente a sua necessidade de apoio sem questionamentos.\n\nAlém disso, pessoas autistas têm **prioridade absoluta por lei** para não precisarem aguardar em filas barulhentas!\n\n[Conhecer Todos os Direitos e Acessibilidade](#direitos)`;
         }
 
-        if (q.includes('artigo 15') || q.includes('art. 15') || q.includes('dispensa') || q.includes('isencao') || q.includes('isenção') || q.includes('oneroso') || q.includes('impossibilidade')) {
-          return `A dispensa do voto é um direito muito importante previsto no **Artigo 15 da Resolução TSE nº 23.659/2021**: ⚖️\n\n- Se o comparecimento às urnas for impossível ou demasiadamente oneroso para a pessoa autista, ela ou seus familiares podem requerer a isenção de penalidades ao Juiz Eleitoral;\n- Para quem já tem título: o juiz anota o código correspondente no histórico (código ASE), dispensando multas e justificativas a cada eleição de forma contínua;\n- Para quem não tem título: é emitida uma **Certidão de Quitação Eleitoral por prazo indeterminado**;\n- E fique tranquilo(a): a isenção NÃO cancela o direito de votar! Se no futuro ela desejar votar, poderá votar normalmente.\n\n[Abrir Gerador de Requerimento](#modelos)`;
+        // 2. Cordão de girassol, quebra-cabeça e identificação (CIPTEA)
+        if (hasAny('girassol', 'cordao', 'cordoes', 'quebra cabeca', 'ciptea', 'fita', 'colar', 'identificacao', 'cracha', 'carteirinha')) {
+          return `Sim, o uso de cordões e identificações é um direito garantido por lei! 🌻💙\n\n- **Cordão de Girassol:** É o símbolo oficial nacional para identificação de deficiências ocultas, como o autismo, previsto na **Lei Federal nº 14.626/2023**;\n- **Cordão do Quebra-Cabeça:** Também é amplamente reconhecido pela comunidade e equipes eleitorais;\n- **Carteira CIPTEA ou RG com símbolo do TEA:** Servem como comprovação imediata da condição de pessoa autista perante os mesários;\n- **Uso facultativo:** Você não é obrigado a usar o cordão se não quiser, mas ele é um facilitador visual excelente para ter atendimento prioritário e acolhedor sem burocracia.\n\n[Ver Procedimentos e Documentos](#procedimento)`;
         }
 
-        if (q.includes('bpc') || q.includes('loas') || q.includes('cpf') || q.includes('beneficio') || q.includes('benefício') || q.includes('cancelar') || q.includes('cancelamento') || q.includes('titulo') || q.includes('título')) {
-          return `Essa é uma dúvida muito frequente e é essencial separar o CPF do Título Eleitoral: 🛡️✨\n\n- **O TÍTULO DE ELEITOR PODE SER CANCELADO?** Sim! Pela regra geral da Justiça Eleitoral, quem faltar a 3 eleições consecutivas sem justificar nem pagar multa tem o Título cancelado.\n\n- **COMO O ARTIGO 15 PROTEGE DISSO?** O Art. 15 da Resolução TSE nº 23.659/2021 foi criado exatamente para amparar pessoas autistas com impossibilidade ou ônus excessivo. Com o pedido deferido pelo Juiz, anota-se a isenção no cadastro (código ASE), **impedindo o cancelamento do título**, afastando todas as multas e emitindo a Certidão de Quitação Eleitoral por prazo indeterminado!\n\n- **O CPF É CANCELADO POR NÃO VOTAR?** Não! A Receita Federal possui cadastro próprio e autônomo. O CPF nunca é cancelado por falta eleitoral.\n\n- **O BPC/LOAS É CANCELADO?** Não! O benefício assistencial é administrado pelo INSS/MDS com base em requisitos socioeconômicos e avaliação médica/social, sem nenhum vínculo com o voto.\n\n[Ver Detalhes sobre Documentos e Benefícios](#documentos)`;
+        // 3. Prioridade na fila e atendimento imediato
+        if (hasAny('prioridade', 'preferencial', 'fila', 'filas', 'esperar', 'espera', 'passar na frente', 'demora', 'rapido', 'evitar fila')) {
+          return `Pessoas autistas e seus acompanhantes têm **prioridade absoluta por lei** na votação! ⚡💙\n\nA **Lei nº 12.764/2012** (Art. 1º, § 2º) e a **Lei nº 14.626/2023** determinam atendimento prioritário imediato em serviços públicos:\n\n- **Não precisa esperar na fila convencional:** Ao chegar à sua seção eleitoral, dirija-se diretamente ao mesário e informe que é pessoa autista (você pode apresentar a CIPTEA, o RG com laudo ou o cordão);\n- **Acompanhante incluso:** A pessoa que estiver te acompanhando tem o direito de ser atendida junto com você com a mesma prioridade;\n- **Prevenção de sobrecarga:** O objetivo da prioridade é evitar o cansaço, aglomerações e ambientes ruidosos que possam desencadear crises sensoriais.\n\n[Ver Direitos e Garantias](#direitos)`;
         }
 
-        if (q.includes('requerimento') || q.includes('como preencher') || q.includes('modelo') || q.includes('petição') || q.includes('cartorio')) {
-          return `Eu posso te ajudar a preparar o documento agora mesmo! 📋✍️\n\nNesta mesma página temos um **Gerador de Requerimentos em Tempo Real**:\n\n1. Você informa o nome da pessoa autista, zona eleitoral e descreve sucintamente as dificuldades práticas;\n2. A petição jurídica é redigida instantaneamente fundamentada no Art. 15 da Resolução TSE nº 23.659/2021;\n3. Você pode clicar em **Baixar Arquivo (.txt)** ou **Imprimir / Salvar em PDF** para levar ao cartório ou enviar por e-mail!\n\n[Preencher Requerimento Agora](#modelos)`;
+        // 4. Acompanhante na cabine de votação
+        if (hasAny('acompanhante', 'acompanhantes', 'cabine', 'entrar junto', 'levar alguem', 'levar acompanhante', 'mae', 'pai', 'filho', 'filha', 'esposa', 'marido', 'ajudar a votar', 'quem pode entrar', 'auxilio na urna')) {
+          return `Sim, com certeza! Você pode levar um acompanhante de sua confiança para entrar junto na cabine. 💙🗳️\n\nA **Resolução TSE nº 23.659/2021 (Art. 149)** assegura expressamente esse direito:\n\n- **Quem escolhe o acompanhante:** A própria pessoa autista escolhe quem vai entrar com ela (mãe, pai, irmão, terapeuta, cuidador ou amigo de confiança);\n- **O que o acompanhante pode fazer:** Prestar auxílio físico ou motor para manusear a urna e conferir os números na tela;\n- **Regra de ouro:** O acompanhante não pode votar no lugar da pessoa nem influenciar seu voto;\n- **Sem autorização de juiz:** Não é necessário ter autorização judicial prévia! Basta avisar aos mesários da sua seção na hora de votar.\n\n[Ir para Direitos e Garantias](#direitos)`;
         }
 
-        if (q.includes('laudo') || q.includes('ciptea') || q.includes('documento')) {
-          return `Para instruir o pedido no Cartório Eleitoral, você precisa de documentos simples: 📄\n\n- Documento oficial de identidade da pessoa autista (RG, Certidão ou Carteira Ciptea);\n- Documento de quem está solicitando (se for mãe, pai, responsável legal ou apoiador);\n- Autodeclaração de deficiência e/ou laudo/relatório médico multidisciplinar (não precisa ser recente se a condição for permanente);\n- Comprovante de residência atualizado.\n\nNão é obrigatório contratar advogado nem entrar com ação na Justiça Comum.\n\n[Ver Passo a Passo](#procedimento)`;
+        // 5. Dispensa do voto / Artigo 15 da Resolução TSE nº 23.659/2021
+        if (hasAny('artigo 15', 'art 15', 'dispensa', 'dispensar', 'isencao', 'impossivel', 'impossibilidade', 'oneroso', 'onerosidade', 'dificuldade excessiva', 'obrigado a votar', 'sou obrigado', 'precisa votar', 'desobrigado', 'ase', 'quitacao por prazo indeterminado')) {
+          return `A dispensa de votação é um direito legal fundamental previsto no **Artigo 15 da Resolução TSE nº 23.659/2021**: ⚖️✨\n\nSe o comparecimento às urnas for impossível ou demasiadamente oneroso para a pessoa autista:\n\n1. **Para quem já tem Título:** O Juiz Eleitoral anota a isenção no cadastro eleitoral (código ASE no histórico). Isso **afasta todas as multas e justificativas para sempre**, impedindo que o título seja cancelado;\n2. **Para quem não tem Título:** É emitida uma **Certidão de Quitação Eleitoral por prazo indeterminado**, sem necessidade de alistamento obrigatório;\n3. **O direito de votar NÃO é cancelado:** A isenção afasta apenas as punições e obrigações. Se no futuro a pessoa autista desejar comparecer e votar, ela poderá votar normalmente!\n\nVocê pode preencher o requerimento oficial para levar ao cartório aqui no portal:\n\n[Abrir Gerador de Requerimento](#modelos)`;
         }
 
-        return null;
+        // 6. Segurança de Benefícios, BPC/LOAS e CPF vs. Cancelamento de Título
+        if (hasAny('bpc', 'loas', 'cpf', 'receita', 'inss', 'beneficio', 'beneficios', 'cancelar', 'cancelamento', 'cancelado', 'bloqueio', 'bloquear', 'perder o bpc', 'perco o bpc', 'perco meu bpc', 'titulo cancela', 'perco o beneficio')) {
+          return `Essa é uma das dúvidas mais importantes e precisamos tranquilizar você: 🛡️✨\n\n- **O CPF NUNCA É CANCELADO POR FALTA ELEITORAL:** A Receita Federal possui cadastro próprio e autônomo. Deixar de votar ou justificar nunca cancela, suspende nem bloqueia o CPF;\n- **O BPC/LOAS NUNCA É CANCELADO POR FALTA ELEITORAL:** O benefício assistencial é gerido pelo INSS e Ministério do Desenvolvimento Social com base na renda familiar e avaliação social/médica. Não tem nenhuma relação com o voto;\n- **E O TÍTULO DE ELEITOR?** Pela regra geral da Justiça Eleitoral, quem faltar a 3 turnos seguidos sem justificar nem pagar multa tem o título cancelado;\n- **A PROTEÇÃO DEFINITIVA:** É justamente para evitar esse cancelamento que o **Art. 15 da Res. TSE nº 23.659/2021** existe! Com o requerimento aprovado, o juiz anota a isenção definitiva e o título fica 100% blindado contra cancelamentos.\n\n[Ver Detalhes sobre Documentos e Benefícios](#documentos)`;
+        }
+
+        // 7. Biometria e leitura digital
+        if (hasAny('biometria', 'digital', 'dedo', 'polegar', 'sensor', 'leitor biometrico', 'nao tenho biometria', 'digital falhou', 'digital nao leu')) {
+          return `Não se preocupe! A biometria nunca impede ninguém de votar. 🖐️💙\n\n- **Se a digital não for lida:** O leitor biométrico da urna tenta fazer a identificação até 4 vezes. Se a digital não for reconhecida por qualquer motivo (sudorese, sensibilidade, desgaste ou agitação motora), o mesário libera a urna manualmente;\n- **Como a votação é liberada:** O mesário apenas confere a sua data de nascimento, confere o documento oficial com foto e colhe a sua assinatura (ou do acompanhante) no caderno de votação;\n- **Sem biometria cadastrada:** Se você ainda não cadastrou a biometria no cartório, você vota normalmente apresentando seu documento oficial com foto (e-Título, RG ou CNH).\n\n[Ver Orientações de Votação](#direitos)`;
+        }
+
+        // 8. Curatela, interdição e capacidade civil
+        if (hasAny('curatela', 'curatelado', 'curatelada', 'interdicao', 'interditado', 'interditada', 'incapaz', 'capacidade civil', 'tutor', 'curador')) {
+          return `Pela lei brasileira, a pessoa autista tem **plena capacidade civil e política**! ⚖️💙\n\nA **Lei Brasileira de Inclusão (LBI - Lei nº 13.146/2015)** mudou totalmente as regras antigas:\n\n- **Autistas curatelados ou interditados PODEM votar:** A curatela atual restringe apenas atos patrimoniais e negociais (dinheiro, venda de imóveis), mas preserva todos os direitos políticos e existenciais;\n- **Não precisa de processo judicial de interdição:** Para pedir a isenção de voto pelo Art. 15 ou exercer direitos eleitorais, não é necessário ter curatela nem contratar advogado;\n- **Quem pode pedir a isenção:** A própria pessoa autista, seus pais, responsáveis legais ou apoiadores formalmente nomeados.\n\n[Ver Passo a Passo Jurídico](#procedimento)`;
+        }
+
+        // 9. Seção especial com acessibilidade e transferência
+        if (hasAny('secao especial', 'acessivel', 'trocar local', 'trocar secao', 'mudar secao', 'local de votacao', 'terreo', 'escadas', 'cadeirante', 'mobilidade')) {
+          return `Você tem direito a votar em uma **Seção Eleitoral com Acessibilidade**! 🏫♿💙\n\nA Justiça Eleitoral disponibiliza seções especiais projetadas para pessoas com deficiência ou autismo:\n\n- **Características da seção acessível:** Fica localizada preferencialmente no piso térreo, sem escadas ou degraus, com corredores amplos e acesso facilitado;\n- **Como solicitar:** Até 151 dias antes de cada eleição (período de fechamento de cadastro), você pode pedir a transferência para seção especial pelo sistema Título Net ou diretamente no cartório;\n- **Após o fechamento do cadastro:** Se o prazo já passou, você ainda tem prioridade de atendimento na sua seção atual e o direito de levar acompanhante de confiança até a cabine!\n\n[Ir para Direitos e Acessibilidade](#direitos)`;
+        }
+
+        // 10. Justificativa de ausência e prazo de 60 dias
+        if (hasAny('justificar', 'justificativa', 'e titulo', 'prazo', '60 dias', 'faltei', 'nao fui votar', 'como justificar', 'justificar ausencia')) {
+          return `Se você não compareceu à eleição e ainda não solicitou a isenção do Art. 15, veja como justificar: 📱✍️\n\n- **Pelo aplicativo e-Título ou Sistema Justifica:** Você pode enviar a justificativa pelo celular ou computador em até **60 dias após cada turno** de votação;\n- **Documentos anexados:** Anexe foto do laudo médico, atestado ou autodeclaração explicando a impossibilidade de comparecimento;\n- **Dica definitiva para não precisar justificar a cada eleição:** Para não precisar repetir essa burocracia toda eleição, solicite no cartório a **isenção permanente do Art. 15 da Resolução TSE nº 23.659/2021** usando o requerimento da nossa página!\n\n[Abrir Gerador de Requerimento](#modelos)`;
+        }
+
+        // 11. Documentos necessários e laudo médico
+        if (hasAny('laudo', 'relatorio', 'documento', 'documentos', 'cid', 'f84', 'validade do laudo', 'laudo vencido', 'laudo recente', 'comprovante', 'o que levar')) {
+          return `Para solicitar a isenção ou registrar acessibilidade no Cartório Eleitoral, você precisa de documentos simples: 📄💙\n\n1. **Documento de Identidade da pessoa autista:** RG com indicação de deficiência, Certidão de Nascimento ou Carteira CIPTEA;\n2. **Documento do Representante / Solicitante:** RG ou CNH (mãe, pai, responsável legal ou apoiador);\n3. **Laudo ou Relatório Médico:** Indicando o diagnóstico de TEA (CID-10 F84 ou CID-11 6A02). **Atenção:** Como o autismo é uma condição de neurodesenvolvimento de caráter permanente, a legislação (como a Lei 12.764/2012 e leis estaduais de laudo perene) estabelece que o laudo não tem prazo de validade expirado;\n4. **Comprovante de residência atualizado.**\n\nNão é obrigatório contratar advogado nem pagar nenhuma taxa de cartório.\n\n[Ver Orientações Completas](#procedimento)`;
+        }
+
+        // 12. Preenchimento de requerimento e gerador
+        if (hasAny('requerimento', 'como preencher', 'gerador', 'modelo', 'peticao', 'fazer requerimento', 'cartorio', 'juiz eleitoral', 'formulario', 'baixar', 'imprimir', 'salvar')) {
+          return `Eu te ajudo a preparar o requerimento oficial agora mesmo! 📋✍️💙\n\nNesta mesma página temos um **Gerador Dinâmico de Requerimento**:\n\n1. **Role até a seção de Modelos:** Clique no atalho abaixo para abrir o formulário;\n2. **Preencha os dados básicos:** Nome da pessoa autista, número do título (se tiver), zona eleitoral e descreva brevemente a situação de impossibilidade ou ônus excessivo;\n3. **Prévia instantânea:** A petição jurídica fundamentada no **Art. 15 da Resolução TSE nº 23.659/2021** é redigida em tempo real;\n4. **Exportação imediata:** Você pode clicar em **Baixar Arquivo (.txt)** para ter o texto no computador/celular ou em **Imprimir / Salvar em PDF** para levar assinado ao Cartório Eleitoral.\n\n[Preencher Requerimento Agora](#modelos)`;
+        }
+
+        // Resposta acolhedora conversacional quando a pergunta não se encaixa nas categorias acima
+        return `Compreendo perfeitamente o que você me perguntou! 💙 Estou aqui para te apoiar com atenção e carinho em qualquer dúvida sobre cidadania, eleição e direitos da pessoa autista.\n\nVocê gostaria de orientações sobre algum destes assuntos práticos?\n\n- **🎧 Acomodação Sensorial:** Uso de abafador de ruído, fones, óculos escuros e cordão de girassol no dia da eleição;\n- **🤝 Apoio no Voto:** Direito a acompanhante de confiança na cabine e prioridade absoluta para não aguardar em filas;\n- **⚖️ Dispensa Legal (Artigo 15):** Como pedir isenção definitiva de votação e multas para pessoas autistas com impossibilidade ou ônus excessivo;\n- **🛡️ Segurança de Benefícios:** A confirmação de que o CPF e o BPC/LOAS nunca são cancelados por faltas eleitorais;\n- **📋 Gerador de Petição:** Formulário nesta página para gerar o requerimento pronto para o Cartório Eleitoral.\n\nVocê pode me mandar uma mensagem dizendo exatamente o que precisa ou clicar em um dos links acima!`;
       }
 
       // Função Principal de Envio
@@ -3264,74 +3324,35 @@ Assinatura do(a) requerente ou representante legal`;
         showTyping();
 
         try {
-          // 1. Tentar chamar API do backend (/api/chat)
+          const isFileProtocol = window.location.protocol === 'file:';
           let responseData = null;
-          let usedDirectClient = false;
 
-          try {
-            const apiRes = await fetch('/api/chat', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                messages: chatHistory,
-                apiKey: userApiKey,
-                model: userModel
-              })
-            });
-
-            if (apiRes.ok) {
-              responseData = await apiRes.json();
-            } else if (apiRes.status === 400) {
-              const errJson = await apiRes.json().catch(() => ({}));
-              if (errJson.code === 'MISSING_API_KEY') {
-                usedDirectClient = true;
-              }
-            } else {
-              usedDirectClient = true;
-            }
-          } catch (netErr) {
-            usedDirectClient = true;
-          }
-
-          // 2. Fallback de chamada direta se a rota serverless não responder e houver userApiKey
-          if (!responseData && userApiKey) {
+          // Se estiver rodando via HTTP/HTTPS, tenta chamar o backend serverless
+          if (!isFileProtocol) {
             try {
-              const directRes = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+              const apiRes = await fetch('/api/chat', {
                 method: 'POST',
-                headers: {
-                  'Authorization': `Bearer ${userApiKey}`,
-                  'HTTP-Referer': window.location.origin || 'https://autismodireitos.vercel.app',
-                  'X-Title': 'Autismo e Direitos',
-                  'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                  model: userModel,
-                  messages: [
-                    {
-                      role: 'system',
-                      content: 'Você é o Guia Virtual Autismo & Direitos, um atendente virtual profundamente afetuoso, empático, paciente e didático. Seu objetivo é apoiar pessoas autistas e familiares em direitos, acessibilidade e cidadania no Brasil. Esclareça sempre com precisão: 1) O Título de Eleitor pode ser cancelado após 3 eleições consecutivas sem justificativa/multa pela regra geral; 2) O Art. 15 da Res. TSE nº 23.659/2021 protege a pessoa autista contra esse cancelamento, concedendo isenção e quitação definitiva; 3) O CPF (Receita Federal) e o BPC/LOAS (INSS/MDS) NUNCA são cancelados por faltas eleitorais. Forneça respostas organizadas, com carinho, tópicos limpos e links internos do portal como [Ir para o Gerador de Requerimento](#modelos) quando útil.'
-                    },
-                    ...chatHistory
-                  ],
-                  temperature: 0.6,
-                  max_tokens: 1000
+                  messages: chatHistory,
+                  apiKey: userApiKey,
+                  model: userModel
                 })
               });
 
-              if (directRes.ok) {
-                responseData = await directRes.json();
-              } else {
-                const errData = await directRes.json().catch(() => ({}));
-                console.warn('Erro OpenRouter direto:', errData);
+              if (apiRes.ok) {
+                responseData = await apiRes.json();
               }
-            } catch (errDirect) {
-              console.warn('Falha na chamada direta OpenRouter:', errDirect);
+            } catch (netErr) {
+              console.warn('Backend serverless indisponível, usando motor empático local:', netErr);
             }
+          } else {
+            // Em protocolo local file://, simula um breve delay de digitação humano (350ms)
+            await new Promise(r => setTimeout(r, 350));
           }
 
           hideTyping();
 
-          // 3. Obter o texto da resposta
           let aiReply = responseData?.choices?.[0]?.message?.content;
 
           if (aiReply) {
@@ -3339,24 +3360,19 @@ Assinatura do(a) requerente ou representante legal`;
             chatHistory.push({ role: 'assistant', content: aiReply });
             saveSessionHistory();
           } else {
-            // 4. Fallback: Base local acolhedora
+            // Fallback: Base local acolhedora, rica e resolutiva
             const localReply = getLocalEmpathicResponse(text);
-            if (localReply) {
-              renderMessage('assistant', localReply);
-              chatHistory.push({ role: 'assistant', content: localReply });
-              saveSessionHistory();
-            } else {
-              const guideReply = `Olá! 💙 Estou aqui com você para te apoiar com paciência e carinho.\n\nVocê pode me perguntar sobre como funciona o acompanhante na cabine, a dispensa de voto (Art. 15 da Resolução TSE), proteção do BPC e CPF perante a Receita Federal, ou como preparar um requerimento para o juiz eleitoral.\n\nVocê também pode navegar diretamente pelas ferramentas do portal:\n\n- [Fazer Atendimento Orientado (Triagem)](#orientacao)\n- [Gerar Requerimento para o Cartório](#modelos)\n- [Conhecer Direitos e Acessibilidade](#direitos)\n- [Perguntas Frequentes](#perguntas)`;
-              renderMessage('assistant', guideReply);
-              chatHistory.push({ role: 'assistant', content: guideReply });
-              saveSessionHistory();
-            }
+            renderMessage('assistant', localReply);
+            chatHistory.push({ role: 'assistant', content: localReply });
+            saveSessionHistory();
           }
         } catch (error) {
           hideTyping();
           console.error('Erro no atendimento:', error);
-          const fallback = getLocalEmpathicResponse(text) || 'Estou com uma breve oscilação momentânea no atendimento. Enquanto isso, sinta-se à vontade para navegar pelos recursos do portal logo acima! 💙';
+          const fallback = getLocalEmpathicResponse(text);
           renderMessage('assistant', fallback);
+          chatHistory.push({ role: 'assistant', content: fallback });
+          saveSessionHistory();
         } finally {
           chatBtnSend.disabled = false;
         }
