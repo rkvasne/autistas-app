@@ -4,6 +4,17 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.1.2] - 2026-10-22
+
+### Corrigido
+- **Respostas do Atendente Virtual sobre Acomodações Sensoriais e Abafadores**:
+  - Implementação de base semântica normalizada (sem acentos ou pontuação) para responder prontamente a dúvidas sobre o uso de **abafadores de ouvido**, fones antirruído e regulação sensorial (Leis 12.764/2012 e 13.146/2015).
+  - Resolução de dúvidas sobre cordão de girassol (Lei 14.626/2023), prioridade na fila, biometria e laudos permanentes.
+  - Autonomia e resiliência em protocolo local (`file:///`), eliminando o reset para a mensagem inicial e garantindo atendimento 100% funcional offline ou sem backend.
+  - Inclusão do chip de sugestão rápida *"🎧 Posso ir com abafador de ouvido?"* na tela inicial de boas-vindas do chat.
+
+---
+
 ## [0.1.1] - 2026-10-21
 
 ### Adicionado
