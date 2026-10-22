@@ -4,6 +4,22 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.1.3] - 2026-10-22
+
+### Modificado
+- **Identidade Visual e Cores dos Ícones de Ação Rápida**:
+  - Substituição das antigas caixas sólidas escuras e emojis de sistema operacional (`🗳️`, `📝`, `👤`, `⚠️`) por ícones vetoriais SVG nítidos e padronizados com traço moderno e responsivo.
+  - Aplicação de gradientes luminosos e harmoniosos com as cores de cada card temático:
+    - **Quero votar (Azul)**: Gradiente `linear-gradient(135deg, #0284c7, #0369a1)` com brilho difuso suave e ícone de urna eleitoral / cédula validada.
+    - **Tenho dificuldade para votar (Verde/Esmeralda)**: Gradiente `linear-gradient(135deg, #10b981, #059669)` e ícone de documento / requerimento formal.
+    - **Quero registrar a deficiência (Roxo/Violeta)**: Gradiente `linear-gradient(135deg, #a855f7, #7c3aed)` e ícone de perfil de eleitor com verificação de acessibilidade, eliminando a silhueta escura ilegível anterior.
+    - **Tenho pendência eleitoral (Âmbar/Laranja)**: Gradiente `linear-gradient(135deg, #f59e0b, #d97706)` e ícone amigável de alerta/regularização cadastral.
+  - Micro-interações táticas: animação sutil de elevação e escala (`transform: translateY(-2px) scale(1.06)`) ao passar o mouse sobre o card.
+  - Efeito hover coordenado no botão de seta (`.arrow-badge`) assumindo a tonalidade vibrante da categoria correspondente.
+  - Regras específicas para o modo de **Alto Contraste** (`body.high-contrast`) com bordas brancas e contraste pleno para baixa visão.
+
+---
+
 ## [0.1.2] - 2026-10-22
 
 ### Corrigido
