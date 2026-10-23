@@ -4,6 +4,23 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.1.9] - 2026-10-22
+
+### Adicionado
+- **Arquivo Consolidado de Histórico da Sessão (`HISTORICO_CONVERSA.txt`)**:
+  - Exportação completa e estruturada de todas as 19 interações da sessão com timestamps cronológicos, solicitações originais do usuário, ações técnicas executadas e respostas finais do assistente.
+
+### Modificado
+- **Sincronização de Documentação e Rodapé**:
+  - Rodapé em `index.html`, `package.json` e `README.md` sincronizados com a versão estável `0.1.9`.
+  - Árvore de arquivos do projeto no `README.md` atualizada para incluir `HISTORICO_CONVERSA.txt`.
+
+### Aprendizado da Release
+- *Fato Observado*: O GitHub Push Protection bloqueia automaticamente o envio de commits com strings literais de chaves de API externas (ex: OpenRouter).
+- *Decisão Operacional*: O desacoplamento estrito para variáveis de ambiente e `.env.local` (carregado dinamicamente via `process.loadEnvFile`) elimina qualquer risco de exposição e assegura deploys limpos.
+
+---
+
 ## [0.1.8] - 2026-10-22
 
 ### Adicionado

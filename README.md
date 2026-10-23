@@ -1,4 +1,4 @@
-# Autismo & Direitos — Guia Prático de Cidadania e Inclusão (v0.1.8)
+# Autismo & Direitos — Guia Prático de Cidadania e Inclusão (v0.1.9)
 
 > **Iniciativa Cidadã e Independente:** Este portal é uma plataforma informativa da sociedade civil destinada a pessoas autistas, suas famílias e representantes legais. **Não é uma página governamental oficial** do Tribunal Superior Eleitoral (TSE) ou dos Tribunais Regionais Eleitorais (TREs). Para serviços e certidões oficiais, consulte sempre o portal do TSE ([tse.jus.br](https://www.tse.jus.br)).
 
@@ -55,8 +55,9 @@ autistas-app/
 │   ├── protecao-beneficios.png         # Seção 4: Mãe e jovem adulto autista confirmando segurança de benefícios e BPC (2D editorial)
 │   └── arquivo/                        # Acervo histórico com todas as 20 variações e versões de estudo preservadas
 ├── CHANGELOG.md                 # Registro cronológico detalhado de lançamentos e versões
+├── HISTORICO_CONVERSA.txt       # Registro completo de todas as 19 interações da sessão de desenvolvimento
 ├── LICENSE                      # Licença de código aberto MIT
-├── package.json                 # Metadados do projeto (v0.1.8) e scripts de execução
+├── package.json                 # Metadados do projeto (v0.1.9) e scripts de execução
 ├── supabase_assistant_messages.sql # Script SQL para Supabase/PostgreSQL com retenção de 180 dias
 ├── .env.example                 # Modelo de variáveis de ambiente para o Supabase compartilhado
 ├── .gitignore                   # Filtro de arquivos do SO, IDEs e dependências
