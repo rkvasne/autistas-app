@@ -1,6 +1,11 @@
+try {
+  process.loadEnvFile('.env.local');
+} catch {}
+
 /**
  * Registra a mensagem enviada ao assistente para conformidade LGPD e ciclo de melhoria de 180 dias.
- * Tenta gravar no Supabase via REST API (se configurado); caso contrário, persiste em log estruturado serverless.
+ * Conecta-se ao banco de dados Supabase compartilhado (jegtoehoywfemrtsdkpc de eleitores-app e locais-app).
+ * Em caso de falha de rede temporária, persiste em log estruturado serverless (fallback resiliente).
  */
 async function recordInteractionLog({ sessionId, userMessage, assistantResponse, model, ipAddress, userAgent }) {
   const RETENTION_DAYS = 180;
@@ -18,6 +23,7 @@ async function recordInteractionLog({ sessionId, userMessage, assistantResponse,
     retention_days: RETENTION_DAYS,
     legal_basis: 'LGPD Art. 7, V (execução de serviço a pedido do titular) e IX (legítimo interesse para aprimoramento pedagógico)',
     metadata: {
+      app: 'autistas-app',
       user_agent: (userAgent || '').substring(0, 120),
       ip_masked: ipAddress ? ipAddress.replace(/(\d+)\.(\d+)\.(\d+)\.(\d+)/, '$1.$2.***.***') : 'anonymized'
     }
@@ -26,9 +32,9 @@ async function recordInteractionLog({ sessionId, userMessage, assistantResponse,
   // 1. Log Estruturado Serverless (garante retenção nos Vercel Logs / Log Drains)
   console.log(JSON.stringify(logPayload));
 
-  // 2. Supabase / PostgreSQL (se as variáveis SUPABASE_URL e SUPABASE_ANON_KEY / SERVICE_ROLE_KEY existirem)
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+  // 2. Supabase / PostgreSQL (projeto compartilhado com eleitores-app e locais-app)
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   if (supabaseUrl && supabaseKey) {
     try {
@@ -98,8 +104,8 @@ export default async function handler(req, res) {
     const userMessages = (Array.isArray(messages) ? messages : []).filter(m => m.role === 'user');
     const lastUserMessage = userMessages.length > 0 ? userMessages[userMessages.length - 1].content : '';
 
-    // Chave de API: variável de ambiente OPENROUTER_API_KEY no servidor (ou chave informada na requisição)
-    const apiKey = clientApiKey || process.env.OPENROUTER_API_KEY;
+    // Chave de API: variável de ambiente OPENROUTER_API_KEY / OPENROUTER_TOKEN (carregada via .env.local ou hosting)
+    const apiKey = clientApiKey || process.env.OPENROUTER_API_KEY || process.env.OPENROUTER_TOKEN;
 
     if (!apiKey) {
       return res.status(400).json({

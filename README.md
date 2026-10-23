@@ -1,4 +1,4 @@
-# Autismo & Direitos — Guia Prático de Cidadania e Inclusão (v0.1.7)
+# Autismo & Direitos — Guia Prático de Cidadania e Inclusão (v0.1.8)
 
 > **Iniciativa Cidadã e Independente:** Este portal é uma plataforma informativa da sociedade civil destinada a pessoas autistas, suas famílias e representantes legais. **Não é uma página governamental oficial** do Tribunal Superior Eleitoral (TSE) ou dos Tribunais Regionais Eleitorais (TREs). Para serviços e certidões oficiais, consulte sempre o portal do TSE ([tse.jus.br](https://www.tse.jus.br)).
 
@@ -12,11 +12,11 @@ O portal **Autismo & Direitos** foi concebido para simplificar a legislação, a
 1. **Guia Virtual de Atendimento ("Pegando na Mão do Cidadão"):** Atendente conversacional no canto inferior direito que acolhe o cidadão de forma calorosa, didática e empática, esclarecendo dúvidas sobre voto, Artigo 15, BPC/LOAS, acompanhante e geração de petições.
    - **Operação Transparente e Sem Fricção:** O atendente já vem pronto e 100% configurado de fábrica no backend, sem exigir configurações nem expor termos técnicos ou seleção de modelos para o usuário final.
    - **Arquitetura Resiliente:** Rota serverless segura `/api/chat` integrada ao OpenRouter (GPT-4o-mini), aliada a uma base empática local que responde prontamente mesmo sem conexão.
-   - **Guarda de Mensagens e Retenção por 180 Dias (LGPD):** Conforme Art. 7º, V e IX da Lei Federal nº 13.709/2018, as mensagens enviadas ao assistente são armazenadas de forma anônima pelo período de 180 dias exclusivamente para fins de calibração pedagógica e melhoria do conteúdo do portal, **mesmo que o usuário recuse cookies opcionais ou telemetria**.
-   - **Persistência Dupla (Supabase / Structured Logging):** Script SQL `supabase_assistant_messages.sql` com tabela `assistant_messages`, políticas RLS, expurgo automático e fallback transparente para logs JSON estruturados em ambientes serverless.
+   - **Banco Compartilhado Supabase (Eleições & Cidadania):** Conectado ao mesmo banco de dados do ecossistema eleitoral (`eleitores-app` e `locais-app`, projeto `jegtoehoywfemrtsdkpc`). As mensagens enviadas ao assistente são arquivadas na tabela `assistant_messages` com retenção estrita de 180 dias (LGPD Art. 7º, V e IX) para melhoria pedagógica contínua, com rotina de expurgo programado e segurança RLS.
+   - **Persistência Dupla (Supabase / Structured Logging):** Script SQL `supabase_assistant_messages.sql` com políticas RLS, gravação assíncrona tanto no backend serverless quanto no cliente (`index.html`) e fallback para logs estruturados JSON em ambientes isolados.
    - **Navegação Guiada Interativa:** O atendente insere atalhos interativos que rolam suavemente a página até a ferramenta correta (ex: gerador de requerimento).
 2. **Conformidade LGPD e Transparência de Privacidade:**
-   - Card flutuante moderno de consentimento no canto inferior esquerdo com opções ("Aceitar Todos" e "Apenas Essenciais"), sem colidir com o assistente virtual.
+   - **Modal Flutuante de Consentimento Amplo e Confortável (`.privacy-card`):** Posicionado centralizadamente na margem inferior (`min(620px, ...)`), com espaçamento relaxado, acolchoamento generoso (`22px 26px`), cantos arredondados suaves (`18px`) e botões ergonômicos ("Aceitar Todos" e "Apenas Essenciais"), mantendo folga generosa de mais de 400px em relação ao widget do chat no canto direito.
    - Esclarecimento explícito sobre a retenção de 180 dias das perguntas do chat.
    - Seção dedicada `#privacidade` no portal com 4 cartões explicativos, direitos do titular (Art. 18) e canal com Encarregado de Dados.
    - Botão para reabrir e gerenciar preferências de privacidade a qualquer momento no rodapé e na seção de termos.
@@ -56,8 +56,9 @@ autistas-app/
 │   └── arquivo/                        # Acervo histórico com todas as 20 variações e versões de estudo preservadas
 ├── CHANGELOG.md                 # Registro cronológico detalhado de lançamentos e versões
 ├── LICENSE                      # Licença de código aberto MIT
-├── package.json                 # Metadados do projeto (v0.1.7) e scripts de execução
+├── package.json                 # Metadados do projeto (v0.1.8) e scripts de execução
 ├── supabase_assistant_messages.sql # Script SQL para Supabase/PostgreSQL com retenção de 180 dias
+├── .env.example                 # Modelo de variáveis de ambiente para o Supabase compartilhado
 ├── .gitignore                   # Filtro de arquivos do SO, IDEs e dependências
 ├── vercel.json                  # Configuração de segurança e deploy na Vercel
 ├── netlify.toml                 # Configuração de deploy no Netlify

@@ -4,6 +4,23 @@ Todas as alterações notáveis neste projeto serão documentadas neste arquivo.
 
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/), e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [0.1.8] - 2026-10-22
+
+### Adicionado
+- **Integração com Banco de Dados Compartilhado Supabase (`jegtoehoywfemrtsdkpc`)**:
+  - Configuração do `autistas-app` para utilizar o mesmo projeto Supabase compartilhado dos projetos irmãos `eleitores-app` e `locais-app` (`https://jegtoehoywfemrtsdkpc.supabase.co`).
+  - Aplicação da tabela `public.assistant_messages` com retenção estrita de 180 dias, índices de busca (`created_at`, `expires_at`, `session_id`), rotina de expurgo automático `delete_expired_assistant_messages()` e política RLS de inserção anônima.
+  - Suporte à gravação tanto no backend serverless (`api/chat.js`) com injeção automática de `.env.local` quanto no cliente (`index.html`) para execuções locais ou sem backend.
+  - Arquivos `.env.local` e `.env.example` padronizados no repositório.
+
+### Modificado
+- **Ampliação e Rebalanceamento do Modal de Consentimento e Privacidade (LGPD)**:
+  - Eliminação do aspecto excessivamente compacto: ampliação da largura para `min(620px, calc(100vw - 36px))` e posicionamento centralizado na margem inferior (`left: 50%; transform: translateX(-50%); bottom: 28px`), deixando mais de 400px de folga até o launcher do chat no canto direito em telas normais.
+  - Aumento da ergonomia visual com acolchoamento generoso (`22px 26px`), cantos arredondados suaves (`18px`), ícone de escudo ampliado (`40px`), botões táteis de ação com altura mínima de `44px` e tipografia legível e relaxada.
+  - Limpeza de media queries duplicadas e readequação de responsividade mobile fluida (`max-width: 680px`).
+
+---
+
 ## [0.1.7] - 2026-10-22
 
 ### Modificado

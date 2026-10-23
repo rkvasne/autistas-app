@@ -1865,29 +1865,30 @@
     }
 
     /* ===== Card Flutuante de Privacidade e Consentimento LGPD ===== */
+    /* ===== Modal Flutuante de Privacidade e Consentimento LGPD (Confortável e Espaçoso) ===== */
     .privacy-card,
     .privacy-banner {
       position: fixed;
-      bottom: 24px;
-      left: 24px;
-      width: 420px;
-      max-width: calc(100vw - 32px);
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(620px, calc(100vw - 36px));
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: 0 16px 45px rgba(17, 45, 71, 0.22), 0 0 0 1px rgba(23, 77, 118, 0.06);
-      padding: 16px 18px;
+      border-radius: 18px;
+      box-shadow: 0 20px 50px rgba(17, 45, 71, 0.25), 0 0 0 1px rgba(23, 77, 118, 0.08);
+      padding: 22px 26px;
       z-index: 9990;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 15px;
       animation: privacyCardIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, visibility 0.25s;
     }
 
     .privacy-card.hidden,
     .privacy-banner.hidden {
-      transform: translateY(16px) scale(0.96);
+      transform: translateX(-50%) translateY(20px) scale(0.97);
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -1896,30 +1897,30 @@
     @keyframes privacyCardIn {
       from {
         opacity: 0;
-        transform: translateY(20px) scale(0.95);
+        transform: translateX(-50%) translateY(24px) scale(0.96);
       }
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateX(-50%) translateY(0) scale(1);
       }
     }
 
     .privacy-card-header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .privacy-card-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
       background: var(--soft-blue);
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 20px;
       flex-shrink: 0;
     }
 
@@ -1929,23 +1930,23 @@
     }
 
     .privacy-card-title {
-      font-size: 14.5px;
+      font-size: 16px;
       font-weight: 750;
       color: var(--navy);
       margin: 0;
-      line-height: 1.25;
+      line-height: 1.3;
       letter-spacing: -0.2px;
     }
 
     .privacy-card-badge {
       display: inline-block;
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--teal-text);
       background: var(--teal-bg);
       border: 1px solid var(--teal-border);
-      padding: 1px 6px;
-      border-radius: 4px;
+      padding: 2px 7px;
+      border-radius: 5px;
       margin-top: 2px;
     }
 
@@ -1954,10 +1955,10 @@
       border: none;
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 16px;
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
+      font-size: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1971,34 +1972,35 @@
     .privacy-card-body {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     .privacy-card-text {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      line-height: 1.45;
+      font-size: 13.5px;
+      color: var(--ink);
+      line-height: 1.55;
       margin: 0;
     }
 
     .privacy-card-callout {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
+      gap: 10px;
       background: #fffbeb;
       border: 1px solid #fde68a;
-      border-left: 3px solid #d97706;
-      border-radius: 8px;
-      padding: 8px 10px;
-      font-size: 11.5px;
+      border-left: 4px solid #d97706;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
       color: #92400e;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .privacy-card-callout .callout-icon {
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.2;
       flex-shrink: 0;
+      margin-top: 1px;
     }
 
     .privacy-card-callout strong {
@@ -2008,14 +2010,14 @@
     .privacy-card-footer {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-top: 2px;
+      gap: 10px;
+      margin-top: 4px;
     }
 
     .privacy-card-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 12px;
     }
 
     .btn-privacy-primary,
@@ -2024,19 +2026,22 @@
       color: #ffffff;
       border: 1px solid var(--primary-dark);
       border-radius: var(--radius-md);
-      padding: 9px 12px;
-      font-size: 12.5px;
+      padding: 11px 18px;
+      font-size: 13.5px;
       font-weight: 700;
       font-family: inherit;
       cursor: pointer;
       text-align: center;
-      transition: background 0.15s, transform 0.1s;
+      min-height: 44px;
+      box-shadow: 0 2px 6px rgba(23, 77, 118, 0.2);
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
       outline: none;
     }
     .btn-privacy-primary:hover,
     .btn-privacy-action.btn-privacy-accept:hover {
       background: var(--primary-dark);
       transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(23, 77, 118, 0.3);
     }
 
     .btn-privacy-secondary,
@@ -2045,12 +2050,13 @@
       color: var(--ink);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 9px 12px;
-      font-size: 12.5px;
+      padding: 11px 18px;
+      font-size: 13.5px;
       font-weight: 600;
       font-family: inherit;
       cursor: pointer;
       text-align: center;
+      min-height: 44px;
       transition: background 0.15s, border-color 0.15s, transform 0.1s;
       outline: none;
     }
@@ -2066,7 +2072,7 @@
     }
 
     .privacy-card-link {
-      font-size: 11.5px;
+      font-size: 12.5px;
       color: var(--primary);
       text-decoration: underline;
       font-weight: 600;
@@ -2076,15 +2082,31 @@
       color: var(--primary-dark);
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 680px) {
       .privacy-card,
       .privacy-banner {
-        bottom: 12px;
-        left: 12px;
-        right: 12px;
+        bottom: 14px;
+        left: 14px;
+        right: 14px;
         width: auto;
         max-width: none;
-        padding: 14px;
+        transform: none;
+        padding: 18px 16px;
+        border-radius: 16px;
+      }
+      .privacy-card.hidden,
+      .privacy-banner.hidden {
+        transform: translateY(20px);
+      }
+      @keyframes privacyCardIn {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
       .privacy-card-actions {
         grid-template-columns: 1fr;
@@ -3246,7 +3268,7 @@
   <footer class="footer no-print" role="contentinfo">
     <div class="wrap footer-inner">
       <div>
-        <strong>Autismo & Direitos</strong> · Versão 0.1.7
+        <strong>Autismo & Direitos</strong> · Versão 0.1.8
         <br />
         <small>Iniciativa cidadã e independente de apoio à inclusão. Este portal não possui vínculo oficial com o Tribunal Superior Eleitoral (TSE) ou Tribunais Regionais Eleitorais (TREs).</small>
         <div class="footer-privacy-links">
@@ -3507,6 +3529,35 @@
           localStorage.setItem(CHAT_VAULT_KEY, JSON.stringify(vault));
         } catch (e) {
           console.warn('Erro ao atualizar cofre local de mensagens:', e);
+        }
+
+        // Se houver mensagem do usuário e chave pública injetada, despacha ao Supabase compartilhado (jegtoehoywfemrtsdkpc)
+        if (userMsg) {
+          try {
+            const supabaseUrl = window.__SUPABASE_URL__ || 'https://jegtoehoywfemrtsdkpc.supabase.co';
+            const supabaseAnonKey = window.__SUPABASE_ANON_KEY__ || localStorage.getItem('tea_supabase_anon_key');
+            if (supabaseAnonKey) {
+              const expiresAtIso = new Date(Date.now() + RETENTION_MS).toISOString();
+
+              fetch(`${supabaseUrl}/rest/v1/assistant_messages`, {
+                method: 'POST',
+                headers: {
+                  'apikey': supabaseAnonKey,
+                  'Authorization': `Bearer ${supabaseAnonKey}`,
+                  'Content-Type': 'application/json',
+                  'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({
+                  session_id: teaSessionId,
+                  app_name: 'autistas-app',
+                  user_message: userMsg.substring(0, 4000),
+                  assistant_response: (assistantMsg || '').substring(0, 6000),
+                  retention_days: RETENTION_DAYS,
+                  expires_at: expiresAtIso
+                })
+              }).catch(() => {});
+            }
+          } catch (e) {}
         }
       }
 

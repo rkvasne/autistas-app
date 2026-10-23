@@ -29,6 +29,10 @@ CREATE INDEX IF NOT EXISTS idx_assistant_messages_session ON public.assistant_me
 -- Ativar Row Level Security (RLS)
 ALTER TABLE public.assistant_messages ENABLE ROW LEVEL SECURITY;
 
+-- Conceder permissões para os papéis padrão do Supabase
+GRANT ALL ON public.assistant_messages TO postgres, service_role;
+GRANT INSERT, SELECT ON public.assistant_messages TO anon, authenticated;
+
 -- Política: Service Role pode ler e escrever tudo
 DROP POLICY IF EXISTS "Service role full access on assistant_messages" ON public.assistant_messages;
 CREATE POLICY "Service role full access on assistant_messages"
@@ -43,7 +47,7 @@ DROP POLICY IF EXISTS "Anon can insert assistant_messages" ON public.assistant_m
 CREATE POLICY "Anon can insert assistant_messages"
     ON public.assistant_messages
     FOR INSERT
-    TO anon
+    TO public
     WITH CHECK (true);
 
 -- Função opcional para limpeza automática de mensagens expiradas (> 180 dias)
